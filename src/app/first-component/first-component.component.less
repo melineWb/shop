@@ -1,0 +1,59 @@
+@flagBorderWidth: 20px;
+@availableOnColor: green;
+
+.box-shadow (@string) {
+    -webkit-box-shadow: @string rgba(156,156,156,1);;
+    -moz-box-shadow: @string rgba(156,156,156,1);;
+    box-shadow: @string rgba(156,156,156,1);;
+}
+
+.flag-availability{
+    border: @flagBorderWidth solid transparent; 
+    border-right: @flagBorderWidth solid @availableOnColor;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.card {
+    .box-shadow(-2px 4px 5px 0px);
+    border: 1px solid #eee;
+    margin: 0 10px 10px;
+    padding: 20px;
+    width: calc(25% - 20px);
+    position: relative;
+
+    &__img {
+        max-width: 100%;
+    }
+
+    &__img-box {
+        height: 300px;
+        overflow: hidden;
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__tags {
+        border-top: 1px solid #eee;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+}
+
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .item {
+        flex-basis: 50%;
+    }
+}
+
+.text-right {
+    text-align: right;
+}

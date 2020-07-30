@@ -1,0 +1,37 @@
+<div class="card">
+    <div>
+        <div [ngClass]="{
+            'flag-availability': true,
+            'flag-availability--off': !isAvailabile
+        }"></div>
+    </div>
+    <div class="card__img-box">
+        <img class="card__img" [src]=imgSrc alt="">
+    </div>
+    <div class="card-description">
+        <h2 class="card__title">{{name}}</h2>
+        <div class="card__description" *ngIf="description">
+            <p>{{description}}</p>
+        </div>
+        <div class="d-flex" *ngIf="category">
+            <span>Category:</span>
+            <span>{{category}}</span>
+        </div>
+        <div class="d-flex">
+            <span>Price:</span>
+            <span>
+                <ng-container *ngIf="price; then priceData; else emptyPrice"></ng-container>
+                <ng-template #priceData>{{price}} $</ng-template>
+                <ng-template #emptyPrice>--</ng-template>
+            </span>
+        </div>
+
+        <div>
+            <button class="card__action" (click)="onBuy()">Buy</button>
+        <div>
+
+        <div class="card__tags" *ngIf="tags">
+            <span *ngFor="let tag of tags; let last = last;">#{{tag}}<ng-container *ngIf="!last">, </ng-container></span>
+        </div>
+    </div>
+</div>
