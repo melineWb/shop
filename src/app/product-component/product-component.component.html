@@ -27,7 +27,10 @@
         </div>
 
         <div>
-            <button class="card__action" (click)="onBuy()">Buy</button>
+            <button class="card__action" 
+            (click)="onBuy()"
+            [disabled]= "!isAvailabile"
+            >Buy</button>
         <div>
 
         <div class="card__tags" *ngIf="tags">

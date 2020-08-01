@@ -34,6 +34,8 @@
 
     &__img {
         max-width: 100%;
+        margin: 0 auto;
+        display: block;
     }
 
     &__img-box {
@@ -67,6 +69,11 @@
         &:hover {
             background-color: darken(@btnColor, 20%);
             cursor: pointer;
+        }
+
+        &:disabled {
+            background-color: #777;
+            pointer-events: none;
         }
     }
 }

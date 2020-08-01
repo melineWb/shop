@@ -1,28 +1,12 @@
 <div>
+  <div>
+    <app-cart-list-component></app-cart-list-component>
+  </div>
   <div class="container">
     <h1 class="text-center">{{title}}</h1>
     <hr class="title-divider"/>
 
-    <div class="d-flex">
-      <app-product-component
-        [name]="'Precision Resistor'"
-        [imgSrc]="'https://cdn3.volusion.com/btfzd.umflq/v/vspfiles/photos/R73820K-2.jpg'"
-        [description]="'1/4W Precision Resistor. Resistance: 820k Ohms'"
-        [price]="0.9"
-        [category]="'Resistor'"
-        [isAvailabile]="true"
-        [tags]="['Resistor', 'Precision', 'Resistance']">
-      </app-product-component>
-
-      <app-product-component
-        [name]="'Ceramic capacitor'"
-        [imgSrc]="'https://electronoff.ua/images/goods/large/kondensator-keramicheskij-mnogoslojnyj-200pf-50v-npo-5-10sht-1.jpg'"
-        [description]="'The ceramic capacitor gains its name from the fact that it uses ceramic materials for its dielectric.'"
-        [price]="2"
-        [category]="'Capacitor'"
-        [isAvailabile]="false">
-      </app-product-component>
-    </div>
+    <app-product-list-component></app-product-list-component>
 
     <h2 class="text-center">{{subtitle}}</h2>
     <hr class="title-divider"/>
