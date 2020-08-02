@@ -1,13 +1,16 @@
 <div class="d-flex">
     <ng-container *ngFor="let product of products">
         <app-product-component
+        [id]="product.id"
         [name]="product.name"
         [imgSrc]="product.imgSrc"
         [description]="product.description"
         [price]="product.price"
         [category]="product.category"
         [isAvailabile]="product.isAvailabile"
-        [tags]="product.tags">
+        [tags]="product.tags"
+        [stockQty]="product.stockQty"
+        (addToCart)="addToCart($event)">
       </app-product-component>
     </ng-container>
   </div>

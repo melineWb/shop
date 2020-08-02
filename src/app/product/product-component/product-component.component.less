@@ -1,13 +1,9 @@
+@import '../../mixins/box-shadow.less';
+
 @flagBorderWidth: 20px;
 @availableOnColor: green;
-@availableOffColor: red;
+@availableOffColor: #e80d0d;
 @btnColor: hsl(199, 75%, 59%);
-
-.box-shadow (@string) {
-    -webkit-box-shadow: @string rgba(156,156,156,1);;
-    -moz-box-shadow: @string rgba(156,156,156,1);;
-    box-shadow: @string rgba(156,156,156,1);;
-}
 
 .availability-border (@color) {
     border-right: @flagBorderWidth solid @color;
@@ -76,21 +72,21 @@
             pointer-events: none;
         }
     }
+
+    &__qty-limit {
+        margin-top: 20px;
+        color: #e80d0d;
+        font-weight: 600;
+    }
 }
 
 
 .d-flex {
-    display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 
     .item {
         flex-basis: 50%;
     }
-}
-
-.text-right {
-    text-align: right;
 }
 
 :host {

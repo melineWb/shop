@@ -1,10 +1,6 @@
-.box-shadow (@string) {
-    -webkit-box-shadow: @string rgba(156,156,156,1);;
-    -moz-box-shadow: @string rgba(156,156,156,1);;
-    box-shadow: @string rgba(156,156,156,1);;
-}
+@import '../../mixins/box-shadow.less';
 
-.card {
+.cart {
     display: flex;
     justify-content: flex-end;
     position: relative;
@@ -14,6 +10,7 @@
         border: 0;
         border-bottom: 2px solid #777;
         padding: 3px 10px;
+        position: relative;
 
         &:focus {
             outline: none;
@@ -37,6 +34,17 @@
         }
     }
 
+    &__qty {
+        background: #777;
+        color: #fff;
+        font-size: 9px;
+        padding: 3px 5px;
+        border-radius: 12px;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+
     &__popover {
         .box-shadow(-2px 4px 5px 0px);
         border: 1px solid #eee;
@@ -47,6 +55,8 @@
         top: 100%;
         right: 0;
         width: 300px;
+        max-height: calc(100vh - 200px);
+        overflow: auto;
     }
 
     &__title {
@@ -86,18 +96,33 @@
         text-decoration: underline;
         margin: 0 0 5px;
     }
+
+    &__desc {
+        flex: auto 1 1;
+    }
+
+    &__remove{
+        border: none;
+        background: none;
+        text-align: center;
+        width: auto;
+        padding: 0;
+        margin: 5px auto;
+        text-decoration: underline;
+        display: block;
+        color: #777;
+
+        &:hover {
+            color: #000;
+            cursor: pointer;
+        }
+    }
 }
 
 .d-flex {
-    display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 
     .item {
         flex-basis: 50%;
     }
-}
-
-.hidden {
-    display: none;
 }

@@ -1,6 +1,7 @@
-import { Category } from './category.enum';
+import { Category } from '../category.enum';
 
 export interface IProductModel {
+    id: string;
     name: string;
     imgSrc?: string;
     description?: string;
@@ -8,5 +9,5 @@ export interface IProductModel {
     category: Category;
     isAvailabile: boolean;
     tags?: string[];
-    availableQuantity: number;
+    stockQty: number;
 }

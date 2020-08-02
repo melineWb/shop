@@ -1,12 +1,14 @@
 <div>
   <div>
-    <app-cart-list-component></app-cart-list-component>
+    <app-cart-list-component
+      totalQty="{{cartAddedQty}}">
+    </app-cart-list-component>
   </div>
   <div class="container">
     <h1 class="text-center">{{title}}</h1>
     <hr class="title-divider"/>
 
-    <app-product-list-component></app-product-list-component>
+    <app-product-list-component (updateCart)="updateCart($event)"></app-product-list-component>
 
     <h2 class="text-center">{{subtitle}}</h2>
     <hr class="title-divider"/>

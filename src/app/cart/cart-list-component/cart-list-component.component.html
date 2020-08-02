@@ -1,36 +1,40 @@
-<div class="card">
-    <button class="card__button" (click)="toglePopover()">
-        <span class="card__button-text">Cart</span>
-        <img class="card__button-img" src="https://cdn0.iconfinder.com/data/icons/shopping-cart-26/1000/Shopping-Basket-03-512.png"/>
+<div class="cart">
+    <button class="cart__button" (click)="toglePopover()">
+        <span class="cart__button-text">Cart</span>
+        <img class="cart__button-img" src="https://cdn0.iconfinder.com/data/icons/shopping-cart-26/1000/Shopping-Basket-03-512.png"/>
+        <span class="cart__qty">{{totalQty}}</span>
     </button>
-    <div class="card__popover" [ngClass]="{hidden: !isVisiblePopover}">
-        <h3 class="card__title">Card</h3>
-        <ng-container *ngIf="totalQty; then productCardContainer; else emptyCard"></ng-container>
-        <ng-template #emptyCard>
-            <span>Your card is empty</span>
-        </ng-template>
-
-        <ng-template #productCardContainer>
-            <div>
-                <div class="card__item">
-                    <div class="card__img">
-                        <img class="card__img" src="https://electronoff.ua/images/goods/large/kondensator-keramicheskij-mnogoslojnyj-200pf-50v-npo-5-10sht-1.jpg" alt="">
+    <div class="cart__popover" [ngClass]="{hidden: !isVisiblePopover}">
+        <h3 class="cart__title">Cart</h3>
+        
+        <div *ngFor="let product of products">
+            <div class="cart__item">
+                <div class="cart__img">
+                    <img class="cart__img" src="{{product.imgSrc}}" alt="">
+                    <button class="cart__remove" (click)="removeItem(product)">Remove</button>
+                </div>
+                <div class="cart__desc">
+                    <p class="cart__product-name">{{product.name}}</p>
+                    <div class="d-flex">
+                        <span class="items">Price:</span>
+                        <span class="items">{{product.price}} $</span>
                     </div>
-                    <div class="card__desc">
-                        <p class="card__product-name">EWdfds sdfsf</p>
-                        <div class="d-flex">
-                            <span class="items">Price:</span>
-                            <span class="items">234 $</span>
-                        </div>
-                        <div class="d-flex">
-                            <span class="items">Quantity:</span>
-                            <span class="items">1</span>
-                        </div>
+                    <div class="d-flex">
+                        <span class="items">Quantity:</span>
+                        <span class="items">{{product.quantity}}</span>
                     </div>
                 </div>
             </div>
-            <div class="card__total">
-                <span>123 $</span>
+        </div>
+
+        <div *ngIf="totalQty > 0; then productCardContainer; else emptyCard"></div>
+        <ng-template #emptyCard>
+            <span>Your cart is empty</span>
+        </ng-template>
+
+        <ng-template #productCardContainer>
+            <div class="cart__total">
+                <span>{{totalPrice}} $</span>
             </div>
         </ng-template>
     </div>

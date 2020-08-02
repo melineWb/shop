@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IProductModel } from './iproduct-model';
+import { IProductModel } from './product/iproduct-model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsServiceService {
+export class ProductsService {
 
   private dataJson = '/assets/data.json';
 
