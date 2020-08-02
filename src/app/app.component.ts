@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { CartListComponentComponent } from './cart/cart-list-component/cart-list-component.component';
+
+import { CartListComponent } from './cart/cart-list-component/cart-list.component';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +8,13 @@ import { CartListComponentComponent } from './cart/cart-list-component/cart-list
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+  @ViewChild(CartListComponent)
+  private cartListComponent: CartListComponent;
+
   title = 'My shop';
   subtitle = 'You may also like';
-  cartAddedQty = 0;
-
-  @ViewChild(CartListComponentComponent)
-  private cartListComponentComponent: CartListComponentComponent;
-
 
   updateCart(cartAddedQty: number): void {
-    this.cartAddedQty += cartAddedQty;
-    this.cartListComponentComponent.getCartData();
+    this.cartListComponent.getCartData();
   }
 }

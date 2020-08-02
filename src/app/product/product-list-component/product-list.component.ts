@@ -1,12 +1,13 @@
 import { Component, Output, OnInit, EventEmitter } from '@angular/core';
-import { ProductsService } from '../../products.service';
-import { IProductModel } from '../iproduct-model';
+
+import { ProductsService } from '../services/products.service';
+import { IProductModel } from '../models/iproduct-model';
 
 @Component({
-  selector: 'app-product-list-component',
-  templateUrl: './product-list-component.component.html'
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html'
 })
-export class ProductListComponentComponent implements OnInit {
+export class ProductListComponent implements OnInit {
   products: IProductModel[];
 
   @Output() updateCart = new EventEmitter<number>();

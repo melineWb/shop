@@ -1,4 +1,4 @@
-import { Category } from '../category.enum';
+import { Category } from '../../shared/category.enum';
 
 export interface IProductModel {
     id: string;
