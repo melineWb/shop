@@ -1,0 +1,102 @@
+[
+    {
+      "id": "5f2359cc71d2cfcf3b3f25cb",
+      "name": "Capacitor",
+      "description": "Capacitor, Radial Electrolytic 85c, 22uF 50V 5*11 P2mm SG1H226M05011BB",
+      "isAvailabile": true,
+      "price": 0.5,
+      "imgSrc": "https://www.livewire.uk.com/Files/123830/Img/23/SAMWAHASG1.jpg",
+      "stockQty": 30,
+      "category": "Capacitor"
+    },
+    {
+      "id": "5f2359ccf46533689368f11a",
+      "name": "IC Chips DSPIC33FJ16GS502-I/SO",
+      "description": "Original Brand New Electronic Component IC Chips DSPIC33FJ16GS502-I/SO ",
+      "isAvailabile": false,
+      "price": 4,
+      "imgSrc": "http://s.alicdn.com/@sc01/kf/He9c7d3c323f14fe2b6991f19a81fc7ddQ.jpg_300x300.jpg_.webp",
+      "stockQty": 16,
+      "category": "Chip",
+      "tags": [
+        "sunt",
+        "veniam",
+        "qui"
+      ]
+    },
+    {
+      "id": "5f2359cccb5fb7e7f185f120",
+      "name": "Ceramic capacitor",
+      "description": "Nulla esse incididunt Lorem consectetur.",
+      "isAvailabile": true,
+      "price": 1.6,
+      "imgSrc": "https://electronoff.ua/images/goods/large/kondensator-keramicheskij-mnogoslojnyj-200pf-50v-npo-5-10sht-1.jpg",
+      "stockQty": 2,
+      "category": "Capacitor",
+      "tags": [
+        "capacitor",
+        "velit",
+        "exercitation",
+        "laborum"
+      ]
+    },
+    {
+      "id": "5f2359cc6c80cc8724a6e452",
+      "name": "Precision Resistor",
+      "description": "Irure sunt ea mollit excepteur ex labore nulla reprehenderit eiusmod dolor sunt sint.",
+      "isAvailabile": true,
+      "price": 3.5,
+      "imgSrc": "https://cdn3.volusion.com/btfzd.umflq/v/vspfiles/photos/R73820K-2.jpg",
+      "stockQty": 10,
+      "category": "Resistor",
+      "tags": [
+        "resistor",
+        "resistance",
+        "aliquip"
+      ]
+    },
+    {
+      "id": "5f2359cc96ecfd33d5a918f4",
+      "name": "Chip CD4011BE",
+      "description": "Reprehenderit eiusmod incididunt ad eu minim ullamco aliquip ex quis cillum consequat.",
+      "isAvailabile": true,
+      "price": 6,
+      "imgSrc": "https://arduino.ua/products_pictures/medium_acc318_1.jpg",
+      "stockQty": 15,
+      "category": "Chip",
+      "tags": [
+        "do",
+        "dolor",
+        "mollit"
+      ]
+    },
+    {
+      "id": "5f2359cc7193ce95f6811966",
+      "name": "LED",
+      "description": "Wifi controller dream color 5050RGB Smart LED Landscape Strip ",
+      "isAvailabile": false,
+      "price": 4.2,
+      "imgSrc": "https:////s.alicdn.com/@sc01/kf/H47294bda1c8c47ab83cc6f95a893eb4c2.jpg_300x300.jpg_.webp",
+      "stockQty": 10,
+      "category": "All",
+      "tags": [
+        "LED",
+        "color"
+      ]
+    },
+    {
+      "id": "5f2359ccdb9f4fb6465bbfd5",
+      "name": "SMD Resistor",
+      "description": "SMD sealing alloy HoLR2512D 2W 0.5m ohm-10m ohm resistor electronic component",
+      "isAvailabile": true,
+      "price": 0.4,
+      "imgSrc": "http:////s.alicdn.com/@sc01/kf/H45f868c0ee9c49eb823056c5b3442e910.jpg_300x300.jpg_.webp",
+      "stockQty": 8,
+      "category": "Resistor",
+      "tags": [
+        "pariatur",
+        "pariatur",
+        "ut"
+      ]
+    }
+  ]

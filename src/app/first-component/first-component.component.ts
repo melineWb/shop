@@ -14,4 +14,6 @@ export class FirstComponentComponent {
   isAvailabile = false;
   tags: string[] = ['ceramic', 'capacitor'];
   bundleItems: string[] = ['Ceramic capacitor 1', 'Ceramic capacitor 2', 'Ceramic capacitor 3'];
+
+  constructor() { }
 }

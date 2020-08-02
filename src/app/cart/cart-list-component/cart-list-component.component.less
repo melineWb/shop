@@ -1,0 +1,128 @@
+@import '../../mixins/box-shadow.less';
+
+.cart {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+
+    &__button {
+        background: none;
+        border: 0;
+        border-bottom: 2px solid #777;
+        padding: 3px 10px;
+        position: relative;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &-text {
+            vertical-align: middle;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #777;
+            line-height: 40px;
+        }
+
+        &-img {
+            max-height: 40px;
+            vertical-align: middle;
+        }
+    }
+
+    &__qty {
+        background: #777;
+        color: #fff;
+        font-size: 9px;
+        padding: 3px 5px;
+        border-radius: 12px;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+
+    &__popover {
+        .box-shadow(-2px 4px 5px 0px);
+        border: 1px solid #eee;
+        padding: 20px;
+        position: absolute;
+        background: #fff;
+        z-index: 100;
+        top: 100%;
+        right: 0;
+        width: 300px;
+        max-height: calc(100vh - 200px);
+        overflow: auto;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        font-size: 16px;
+        color: #777;
+        text-align: center;
+        margin: 0 0 10px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    &__img {
+        flex: 50px 0 0;
+        margin-right: 20px;
+    }
+
+    &__total {
+        border-top: 1px solid #eee;
+        margin-top: 20px;
+        padding-top: 20px;
+        text-align: right;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    &__product-name {
+        font-weight: 600;
+        text-decoration: underline;
+        margin: 0 0 5px;
+    }
+
+    &__desc {
+        flex: auto 1 1;
+    }
+
+    &__remove{
+        border: none;
+        background: none;
+        text-align: center;
+        width: auto;
+        padding: 0;
+        margin: 5px auto;
+        text-decoration: underline;
+        display: block;
+        color: #777;
+
+        &:hover {
+            color: #000;
+            cursor: pointer;
+        }
+    }
+}
+
+.d-flex {
+    justify-content: space-between;
+
+    .item {
+        flex-basis: 50%;
+    }
+}

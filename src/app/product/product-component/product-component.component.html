@@ -27,8 +27,25 @@
         </div>
 
         <div>
-            <button class="card__action" (click)="onBuy()">Buy</button>
+            <button class="card__action" 
+                (click)="onBuy()"
+                [disabled]= "!isAvailabile || stockQty === 0">
+                Buy
+            </button>
         <div>
+
+        <div class="d-flex card__qty-limit" *ngIf="stockQty <= 5 || !isAvailabile">
+            <ng-container *ngIf="stockQty > 0 && isAvailabile; then qtyBlock; else msgBlock"></ng-container>
+            <ng-template #qtyBlock>
+                <span>Limited Qty:</span>
+                <span>{{stockQty}}</span>
+            </ng-template>
+            <ng-template #msgBlock>
+                <div class="text-center">
+                    <span>Not yet available</span>
+                </div>
+            </ng-template>
+        </div>
 
         <div class="card__tags" *ngIf="tags">
             <span *ngFor="let tag of tags; let last = last;">#{{tag}}<ng-container *ngIf="!last">, </ng-container></span>
