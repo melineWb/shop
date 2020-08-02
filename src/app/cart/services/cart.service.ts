@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ICartProductModel } from './cart/icart-product-model';
+
+import { ICartProductModel } from '../icart-product-model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,15 +28,15 @@ export class CartService {
     }
   }
 
-  getProducts(): ICartProductModel[] {
-    return this.products;
-  }
-
-  removeProduct(id): void {
+  removeProduct(data): void {
     this.products.map((product: ICartProductModel, index) => {
-      if (product.id === id) {
+      if (product.id === data.id) {
         this.products.splice(index, 1);
       }
     });
+  }
+
+  getProducts(): ICartProductModel[] {
+    return this.products;
   }
 }

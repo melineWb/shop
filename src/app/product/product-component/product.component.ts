@@ -1,15 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Category } from '../../category.enum';
-import { IProductModel } from '../iproduct-model';
-import { CartService } from '../../cart.service';
+
+import { Category } from '../../shared/category.enum';
+import { IProductModel } from '../models/iproduct-model';
+import { CartService } from '../../cart/services/cart.service';
 
 
 @Component({
-  selector: 'app-product-component',
-  templateUrl: './product-component.component.html',
-  styleUrls: ['./product-component.component.less']
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.less']
 })
-export class ProductComponentComponent implements OnInit, IProductModel {
+export class ProductComponent implements OnInit, IProductModel {
 
   @Input() id: string;
   @Input() name: string;
@@ -30,12 +31,6 @@ export class ProductComponentComponent implements OnInit, IProductModel {
     this.checkAvailability();
   }
 
-  private checkAvailability(): void {
-    if (this.stockQty === 0) {
-      this.isAvailabile = false;
-    }
-  }
-
   onBuy(): void {
     this.stockQty -= 1;
     this.cartService.addProduct({
@@ -50,5 +45,11 @@ export class ProductComponentComponent implements OnInit, IProductModel {
 
     console.log('The item successfully added');
     this.checkAvailability();
+  }
+
+  private checkAvailability(): void {
+    if (this.stockQty === 0) {
+      this.isAvailabile = false;
+    }
   }
 }

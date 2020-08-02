@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Category } from '../category.enum';
+
+import { Category } from '../shared/category.enum';
 
 @Component({
-  selector: 'app-first-component',
-  templateUrl: './first-component.component.html',
-  styleUrls: ['./first-component.component.less']
+  selector: 'app-first',
+  templateUrl: './first.component.html',
+  styleUrls: ['./first.component.less']
 })
-export class FirstComponentComponent {
+export class FirstComponent {
   name = 'Ceramic capacitors Bundle';
   description = 'The ceramic capacitor gains its name from the fact that it uses ceramic materials for its dielectric.';
   price = 2;
