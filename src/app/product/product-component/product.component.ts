@@ -25,6 +25,9 @@ export class ProductComponent implements OnInit, IProductModel {
 
   @Output() addToCart = new EventEmitter<number>();
 
+  // если этот компонент получает данные на вход, то, вероятно, он презентационный
+  // надо постараться убрать зависимость на сервис, а операцию перенести в родителский компонент,
+  // там уже есть одна зависимость, можно добавить еще и эту, а этот компонент пусть генерит аутпут
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
