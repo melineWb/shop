@@ -1,5 +1,6 @@
 <div class="d-flex">
     <ng-container *ngFor="let product of products">
+      <!-- не самый лучший вариант передачи данных, лучше передать объект, а не его свойства -->
         <app-product
         [id]="product.id"
         [name]="product.name"
