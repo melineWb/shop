@@ -23,10 +23,5 @@ import { CartService } from './cart/services/cart.service';
     HttpClientModule
   ],
   bootstrap: [AppComponent],
-  // сервисы уже зарегистрированы
-  // providers: [
-  //   ProductsService,
-  //   CartService
-  // ]
 })
 export class AppModule { }
