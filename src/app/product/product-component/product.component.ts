@@ -1,58 +1,35 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Category } from '../../shared/category.enum';
 import { IProductModel } from '../models/iproduct-model';
-import { CartService } from '../../cart/services/cart.service';
-
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.less']
 })
-export class ProductComponent implements OnInit, IProductModel {
-
-  @Input() id: string;
-  @Input() name: string;
-  @Input() imgSrc: string;
-  @Input() description: string;
-  @Input() price: number;
-  @Input() category: Category = Category.All;
-  @Input() tags: string[];
-  @Input() stockQty: number;
-  @Input() isAvailabile: boolean;
+export class ProductComponent implements OnInit {
+  @Input() data: IProductModel;
   @Input() cartAddedQty = 1;
 
-  @Output() addToCart = new EventEmitter<number>();
+  @Output() addToCart = new EventEmitter<IProductModel>();
 
-  // если этот компонент получает данные на вход, то, вероятно, он презентационный
-  // надо постараться убрать зависимость на сервис, а операцию перенести в родителский компонент,
-  // там уже есть одна зависимость, можно добавить еще и эту, а этот компонент пусть генерит аутпут
-  constructor(private cartService: CartService) { }
+  constructor() { }
 
   ngOnInit(): void {
+    this.data.cartAddedQty = 1;
     this.checkAvailability();
   }
 
   onBuy(): void {
-    this.stockQty -= 1;
-    this.cartService.addProduct({
-      id: this.id,
-      name: this.name,
-      imgSrc: this.imgSrc,
-      price: this.price,
-      quantity: this.cartAddedQty
-    });
+    this.data.stockQty -= 1;
+    this.addToCart.emit(this.data);
 
-    this.addToCart.emit(this.cartAddedQty);
-
-    console.log('The item successfully added');
     this.checkAvailability();
   }
 
   private checkAvailability(): void {
-    if (this.stockQty === 0) {
-      this.isAvailabile = false;
+    if (this.data.stockQty === 0) {
+      this.data.isAvailabile = false;
     }
   }
 }

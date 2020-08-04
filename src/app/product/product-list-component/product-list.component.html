@@ -1,17 +1,8 @@
 <div class="d-flex">
     <ng-container *ngFor="let product of products">
-      <!-- не самый лучший вариант передачи данных, лучше передать объект, а не его свойства -->
         <app-product
-        [id]="product.id"
-        [name]="product.name"
-        [imgSrc]="product.imgSrc"
-        [description]="product.description"
-        [price]="product.price"
-        [category]="product.category"
-        [isAvailabile]="product.isAvailabile"
-        [tags]="product.tags"
-        [stockQty]="product.stockQty"
-        (addToCart)="addToCart($event)">
+          [data]="product"
+          (addToCart)="addToCart($event)">
       </app-product>
     </ng-container>
   </div>

@@ -2,26 +2,26 @@
     <div>
         <div [ngClass]="{
             'flag-availability': true,
-            'flag-availability--off': !isAvailabile
+            'flag-availability--off': !data.isAvailabile
         }"></div>
     </div>
     <div class="card__img-box">
-        <img class="card__img" [src]=imgSrc alt="">
+        <img class="card__img" [src]=data.imgSrc alt="">
     </div>
     <div class="card-description">
-        <h2 class="card__title">{{name}}</h2>
-        <div class="card__description" *ngIf="description">
-            <p>{{description}}</p>
+        <h2 class="card__title">{{data.name}}</h2>
+        <div class="card__description" *ngIf="data.description">
+            <p>{{data.description}}</p>
         </div>
-        <div class="d-flex" *ngIf="category">
+        <div class="d-flex" *ngIf="data.category">
             <span>Category:</span>
-            <span>{{category}}</span>
+            <span>{{data.category}}</span>
         </div>
         <div class="d-flex">
             <span>Price:</span>
             <span>
-                <ng-container *ngIf="price; then priceData; else emptyPrice"></ng-container>
-                <ng-template #priceData>{{price}} $</ng-template>
+                <ng-container *ngIf="data.price; then priceData; else emptyPrice"></ng-container>
+                <ng-template #priceData>{{data.price}} $</ng-template>
                 <ng-template #emptyPrice>--</ng-template>
             </span>
         </div>
@@ -29,16 +29,16 @@
         <div>
             <button class="card__action" 
                 (click)="onBuy()"
-                [disabled]= "!isAvailabile || stockQty === 0">
+                [disabled]= "!data.isAvailabile || data.stockQty === 0">
                 Buy
             </button>
         <div>
 
-        <div class="d-flex card__qty-limit" *ngIf="stockQty <= 5 || !isAvailabile">
-            <ng-container *ngIf="stockQty > 0 && isAvailabile; then qtyBlock; else msgBlock"></ng-container>
+        <div class="d-flex card__qty-limit" *ngIf="data.stockQty <= 5 || !data.isAvailabile">
+            <ng-container *ngIf="data.stockQty > 0 && data.isAvailabile; then qtyBlock; else msgBlock"></ng-container>
             <ng-template #qtyBlock>
                 <span>Limited Qty:</span>
-                <span>{{stockQty}}</span>
+                <span>{{data.stockQty}}</span>
             </ng-template>
             <ng-template #msgBlock>
                 <div class="text-center">
@@ -47,8 +47,8 @@
             </ng-template>
         </div>
 
-        <div class="card__tags" *ngIf="tags">
-            <span *ngFor="let tag of tags; let last = last;">#{{tag}}<ng-container *ngIf="!last">, </ng-container></span>
+        <div class="card__tags" *ngIf="data.tags">
+            <span *ngFor="let tag of data.tags; let last = last;">#{{tag}}<ng-container *ngIf="!last">, </ng-container></span>
         </div>
     </div>
 </div>

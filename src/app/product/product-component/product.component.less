@@ -1,25 +1,7 @@
-@import '../../mixins/box-shadow.less';
+@import '../../shared/styles/mixins/box-shadow.less';
+@import '../../shared/styles/availability-flag.less';
 
-@flagBorderWidth: 20px;
-@availableOnColor: green;
-@availableOffColor: #e80d0d;
 @btnColor: hsl(199, 75%, 59%);
-
-.availability-border (@color) {
-    border-right: @flagBorderWidth solid @color;
-}
-
-.flag-availability{
-    border: @flagBorderWidth solid transparent; 
-    .availability-border(@availableOnColor);
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    &--off {
-        .availability-border(@availableOffColor);
-    }
-}
 
 .card {
     .box-shadow(-2px 4px 5px 0px);

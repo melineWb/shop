@@ -10,4 +10,5 @@ export interface IProductModel {
     isAvailabile: boolean;
     tags?: string[];
     stockQty: number;
+    cartAddedQty?: number;
 }

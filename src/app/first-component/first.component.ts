@@ -12,7 +12,7 @@ export class FirstComponent {
   description = 'The ceramic capacitor gains its name from the fact that it uses ceramic materials for its dielectric.';
   price = 2;
   category: Category = Category.Capacitor;
-  isAvailabile = false;
+  isAvailabile = true;
   tags: string[] = ['ceramic', 'capacitor'];
   bundleItems: string[] = ['Ceramic capacitor 1', 'Ceramic capacitor 2', 'Ceramic capacitor 3'];
 
