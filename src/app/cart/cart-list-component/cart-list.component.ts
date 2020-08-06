@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { CartService } from '../services/cart.service';
-import { ICartProductModel } from '../icart-product-model';
+import { ICartProductModel } from '../models/icart-product-model';
 
 @Component({
   selector: 'app-cart-list',
@@ -14,6 +14,8 @@ export class CartListComponent implements OnInit {
   products: ICartProductModel[];
   totalQty = 0;
 
+  @Output() updateProductData = new EventEmitter<ICartProductModel>();
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -23,15 +25,32 @@ export class CartListComponent implements OnInit {
   getCartData(): void{
     this.products = this.cartService.getProducts();
 
-    const totalPrice = this.products.reduce((val: any, product: ICartProductModel) => {
-      return val + product.price * product.quantity;
-    }, 0);
-    this.totalPrice = totalPrice.toFixed(2);
-    this.totalQty = this.products.length;
+    const dataObj = this.products.reduce((data: any, product: ICartProductModel) => {
+      const price = data.price + product.price * product.quantity;
+      const quantity = data.quantity + product.quantity;
+
+      return {
+        price,
+        quantity
+      };
+    }, {
+      price: 0,
+      quantity: 0
+    });
+
+    this.totalPrice = dataObj.price.toFixed(2);
+    this.totalQty = dataObj.quantity;
   }
 
-  removeItem(product: ICartProductModel): void {
+  removeCartItem(product: ICartProductModel): void {
+    this.updateProductData.emit({...product, quantity: -product.quantity});
     this.cartService.removeProduct(product);
+    this.getCartData();
+  }
+
+  updateItemQty(product: ICartProductModel): void {
+    this.updateProductData.emit(product);
+    this.cartService.setQty(product);
     this.getCartData();
   }
 

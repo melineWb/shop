@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ICartProductModel } from '../icart-product-model';
+import { ICartProductModel } from '../models/icart-product-model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +17,36 @@ export class CartService {
 
   addProduct(data: ICartProductModel): void {
     if (this.isExistProduct(data.id)) {
-      this.products.map((product: ICartProductModel) => {
-        if (product.id === data.id) {
-          product.quantity += data.quantity;
-          return product;
+
+      const cartProsucts = this.products.map((product: ICartProductModel) => {
+        const productObj = {...product};
+        if (productObj.id === data.id) {
+          productObj.quantity += data.quantity;
+          productObj.stockQty = data.stockQty;
         }
+
+        return productObj;
       });
+
+      this.products = cartProsucts;
+
     } else {
       this.products.unshift(data);
     }
+  }
+
+  setQty(data: ICartProductModel): void {
+    const cartProsucts = this.products.map((product: ICartProductModel) => {
+      const productObj = {...product};
+      if (productObj.id === data.id) {
+        productObj.quantity = data.quantity;
+        productObj.stockQty = data.stockQty - data.quantity;
+      }
+
+      return productObj;
+    });
+
+    this.products = cartProsucts;
   }
 
   removeProduct(data): void {

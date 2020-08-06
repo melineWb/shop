@@ -1,7 +1,5 @@
 <div class="card">
-    <div *ngIf="isAvailabile">
-        <div class="flag-availability"></div>
-    </div>
+    <app-availability-flag [isAvailable]="isAvailabile"></app-availability-flag>
     <div class="card__img-box">
         <img class="card__img" src="https://electronoff.ua/images/goods/large/kondensator-keramicheskij-mnogoslojnyj-200pf-50v-npo-5-10sht-1.jpg" alt="">
     </div>

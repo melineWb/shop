@@ -1,0 +1,9 @@
+<div>
+    <div [ngClass]="{
+        'flag-availability': true,
+        'flag-availability--off': !isAvailable
+        }">
+        <div class="flag-availability__border"></div>
+        <div class="flag-availability__text">{{text}}</div>
+    </div>
+</div>

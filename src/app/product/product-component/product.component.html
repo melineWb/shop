@@ -1,10 +1,5 @@
 <div class="card">
-    <div>
-        <div [ngClass]="{
-            'flag-availability': true,
-            'flag-availability--off': !data.isAvailabile
-        }"></div>
-    </div>
+    <app-availability-flag [isAvailable]="data.isAvailabile && data.stockQty > 0"></app-availability-flag>
     <div class="card__img-box">
         <img class="card__img" [src]=data.imgSrc alt="">
     </div>
@@ -34,17 +29,9 @@
             </button>
         <div>
 
-        <div class="d-flex card__qty-limit" *ngIf="data.stockQty <= 5 || !data.isAvailabile">
-            <ng-container *ngIf="data.stockQty > 0 && data.isAvailabile; then qtyBlock; else msgBlock"></ng-container>
-            <ng-template #qtyBlock>
-                <span>Limited Qty:</span>
-                <span>{{data.stockQty}}</span>
-            </ng-template>
-            <ng-template #msgBlock>
-                <div class="text-center">
-                    <span>Not yet available</span>
-                </div>
-            </ng-template>
+        <div class="d-flex card__qty-limit" *ngIf="data.stockQty <= 5 && data.stockQty > 0">
+            <span>Limited Qty:</span>
+            <span>{{data.stockQty}}</span>
         </div>
 
         <div class="card__tags" *ngIf="data.tags">
