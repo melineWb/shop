@@ -1,12 +1,12 @@
 <div>
   <div>
-    <app-cart-list></app-cart-list>
+    <app-cart-list (updateProductData)="updateProductData($event)"></app-cart-list>
   </div>
   <div class="container">
     <h1 class="text-center">{{title}}</h1>
     <hr class="title-divider"/>
 
-    <app-product-list (updateCart)="updateCart($event)"></app-product-list>
+    <app-product-list (updateCart)="updateCart()"></app-product-list>
 
     <h2 class="text-center">{{subtitle}}</h2>
     <hr class="title-divider"/>

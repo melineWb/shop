@@ -4,4 +4,5 @@ export interface ICartProductModel {
     imgSrc?: string;
     price?: number;
     quantity: number;
+    stockQty?: number;
 }

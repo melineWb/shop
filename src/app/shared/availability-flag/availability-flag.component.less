@@ -1,0 +1,43 @@
+@flagBorderWidth: 20px;
+@availableOnColor: #2e7d32;
+@availableOffColor: #b71c1c;
+
+.availability-border (@color) {
+    border-top: 32px solid @color; 
+	border-left: 30px solid transparent;
+}
+
+.flag-availability{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: stretch;
+    align-content: center;
+    top: 0;
+
+    &__border {
+        .availability-border(@availableOnColor);
+        top: 0;
+        right: 0;
+    }
+
+    &__text {
+        background-color: @availableOnColor;
+        color: #fff;
+        padding: 7px 15px 0;
+        height: 25px;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    &--off {
+        .flag-availability__border {
+            .availability-border(@availableOffColor);
+        }
+
+        .flag-availability__text {
+            background-color: @availableOffColor;
+        }
+    }
+
+}

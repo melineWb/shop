@@ -1,12 +1,20 @@
 @import '../../shared/styles/mixins/box-shadow.less';
-@import '../../shared/styles/availability-flag.less';
 
-@btnColor: hsl(199, 75%, 59%);
+@btnColor: hsla(200, 97%, 45%, 1);
+
+.d-flex {
+    justify-content: space-between;
+    margin-top: 5px;
+
+    .item {
+        flex-basis: 50%;
+    }
+}
 
 .card {
     .box-shadow(-2px 4px 5px 0px);
     border: 1px solid #eee;
-    margin: 0 10px 10px;
+    margin: 10px;
     padding: 20px;
     position: relative;
 
@@ -45,8 +53,13 @@
         font-weight: 600;
 
         &:hover {
-            background-color: darken(@btnColor, 20%);
+            background-color: darken(@btnColor, 7%);
             cursor: pointer;
+        }
+
+        &:focus {
+            outline: none;
+            background-color: darken(@btnColor, 14%);
         }
 
         &:disabled {
@@ -57,17 +70,8 @@
 
     &__qty-limit {
         margin-top: 20px;
-        color: #e80d0d;
+        color: #b71c1c;
         font-weight: 600;
-    }
-}
-
-
-.d-flex {
-    justify-content: space-between;
-
-    .item {
-        flex-basis: 50%;
     }
 }
 

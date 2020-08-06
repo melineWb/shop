@@ -1,0 +1,25 @@
+<div class="cart-item">
+    <div class="cart-item__img">
+        <img class="cart-item__img" src="{{product.imgSrc}}" alt="">
+        <button class="cart-item__remove" (click)="removeItem()">Remove</button>
+    </div>
+    <div class="cart-item__desc">
+        <p class="cart-item__product-name">{{product.name}}</p>
+        <div class="d-flex">
+            <span class="items">Price:</span>
+            <span class="items">{{product.price}} $</span>
+        </div>
+        <div class="d-flex">
+            <span class="items">Quantity:</span>
+            <span class="items">
+                <input 
+                    class="cart-item__qty-field" 
+                    type="number" 
+                    min="1" 
+                    max="{{maxProductQty}}"
+                    [ngModel]="product.quantity"
+                    (ngModelChange)="changeQty($event)"/>
+            </span>
+        </div>
+    </div>
+</div>
