@@ -11,7 +11,8 @@
             <app-cart-item 
                 [product]="product"
                 (removeCartItem)="removeCartItem($event)"
-                (updateItemQty)="updateItemQty($event)"
+                (decreaseItemQty)="decreaseItemQty($event)"
+                (increaseItemQty)="increaseItemQty($event)"
                 >
             </app-cart-item>
         </div>

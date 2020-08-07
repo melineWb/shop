@@ -4,11 +4,18 @@
 
 .d-flex {
     justify-content: space-between;
-    margin-top: 5px;
+
+    & + & {
+        margin-top: 10px;
+    }
 
     .item {
         flex-basis: 50%;
     }
+}
+
+h2 {
+    font-size: 24px;
 }
 
 .card {
@@ -39,16 +46,44 @@
         padding-top: 20px;
     }
 
-    &__action {
+    &__action-box {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
         width: 100%;
+        flex-wrap: wrap;
+    }
+
+    &__qty-field-wrapper {
+        flex: 30% 0 0;
+        padding-right: 10px;
+        display: block;
+    }
+
+    &__qty-field {
+        width: 100%;
+        padding: 10px;
+        display: block;
+        border-radius: 30px;
+        box-shadow: none;
+        border: 1px solid #777;
+        text-align: center;
+
+        &:hover, &:focus {
+            border-color: #263238;
+            outline: none;
+        }
+    }
+
+    &__action {
+        flex: 70% 1 1;
         background: @btnColor;
         border: 0;
-        box-shadow: 0;
+        box-shadow: none;
         border-radius: 20px;
         text-align: center;
         color: #fff;
         padding: 10px;
-        margin-top: 20px;
         text-transform: uppercase;
         font-weight: 600;
 

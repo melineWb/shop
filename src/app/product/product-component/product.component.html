@@ -21,13 +21,25 @@
             </span>
         </div>
 
-        <div>
+        <form class="card__action-box">
+            <div class="card__qty-field-wrapper" *ngIf= "data.isAvailabile && data.stockQty > 0">
+                <input 
+                min="1" 
+                max="{{data.stockQty}}"
+                type="number"
+                name="qty"
+                class="card__qty-field"
+                [(ngModel)]="data.cartAddedQty" 
+                (ngModelChange)="changeAddedQty($event)"
+                (blur)="checkValidationQty(data.cartAddedQty)" />
+            </div>
+
             <button class="card__action" 
                 (click)="onBuy()"
                 [disabled]= "!data.isAvailabile || data.stockQty === 0">
                 Buy
             </button>
-        <div>
+        </form>
 
         <div class="d-flex card__qty-limit" *ngIf="data.stockQty <= 5 && data.stockQty > 0">
             <span>Limited Qty:</span>
