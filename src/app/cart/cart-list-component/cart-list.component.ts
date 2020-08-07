@@ -25,21 +25,9 @@ export class CartListComponent implements OnInit {
   getCartData(): void{
     this.products = this.cartService.getProducts();
 
-    const dataObj = this.products.reduce((data: any, product: ICartProductModel) => {
-      const price = data.price + product.price * product.quantity;
-      const quantity = data.quantity + product.quantity;
-
-      return {
-        price,
-        quantity
-      };
-    }, {
-      price: 0,
-      quantity: 0
-    });
-
-    this.totalPrice = dataObj.price.toFixed(2);
-    this.totalQty = dataObj.quantity;
+    const totalCartData = this.cartService.getTotalData();
+    this.totalPrice = totalCartData.totalPrice;
+    this.totalQty = totalCartData.totalQty;
   }
 
   removeCartItem(product: ICartProductModel): void {

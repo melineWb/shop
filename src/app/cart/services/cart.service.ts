@@ -61,4 +61,24 @@ export class CartService {
   getProducts(): ICartProductModel[] {
     return this.products;
   }
+
+  getTotalData(): any {
+    const dataObj = this.products.reduce((data: any, product: ICartProductModel) => {
+      const price = data.price + product.price * product.quantity;
+      const quantity = data.quantity + product.quantity;
+
+      return {
+        price,
+        quantity
+      };
+    }, {
+      price: 0,
+      quantity: 0
+    });
+
+    return {
+      totalPrice: dataObj.price.toFixed(2),
+      totalQty: dataObj.quantity
+    }
+  }
 }

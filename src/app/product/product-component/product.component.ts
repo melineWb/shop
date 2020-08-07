@@ -21,7 +21,24 @@ export class ProductComponent implements OnInit {
   }
 
   onBuy(): void {
+    this.checkValidationQty(this.data.cartAddedQty);
     this.data.stockQty -= this.data.cartAddedQty;
     this.addToCart.emit(this.data);
+    this.data.cartAddedQty = 1;
+  }
+
+  changeAddedQty(qty: number): void {
+    if (!qty) {
+      return;
+    }
+    this.data.cartAddedQty = qty;
+  }
+
+  checkValidationQty(qty: number): void {
+    if (qty < 1) {
+      this.data.cartAddedQty = 1
+    } else if (qty > this.data.stockQty) {
+      this.data.cartAddedQty = this.data.stockQty;
+    }
   }
 }
