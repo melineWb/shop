@@ -43,14 +43,20 @@ export class CartListComponent implements OnInit {
   }
 
   removeCartItem(product: ICartProductModel): void {
-    this.updateProductData.emit({...product, quantity: -product.quantity});
+    this.updateProductData.emit({...product, stockQty: product.stockQty + product.quantity});
     this.cartService.removeProduct(product);
     this.getCartData();
   }
 
-  updateItemQty(product: ICartProductModel): void {
+  decreaseItemQty(product: ICartProductModel): void {
     this.updateProductData.emit(product);
-    this.cartService.setQty(product);
+    this.cartService.decreaseQty(product);
+    this.getCartData();
+  }
+
+  increaseItemQty(product: ICartProductModel): void {
+    this.updateProductData.emit(product);
+    this.cartService.increaseQty(product);
     this.getCartData();
   }
 

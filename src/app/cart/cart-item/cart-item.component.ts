@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, OnChanges, ChangeDetectorRef } from '@angular/core';
 
 import { ICartProductModel } from '../models/icart-product-model';
 
@@ -11,12 +11,14 @@ import { ICartProductModel } from '../models/icart-product-model';
 
 export class CartItemComponent implements OnInit, OnChanges {
   @Input() product: ICartProductModel;
+  disableMaxQtyErr = false;
   maxProductQty: number;
 
   @Output() removeCartItem = new EventEmitter<ICartProductModel>();
-  @Output() updateItemQty = new EventEmitter<ICartProductModel>();
+  @Output() increaseItemQty = new EventEmitter<ICartProductModel>();
+  @Output() decreaseItemQty = new EventEmitter<ICartProductModel>();
 
-  constructor() { }
+  constructor(public cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.setMaxQty();
@@ -30,28 +32,37 @@ export class CartItemComponent implements OnInit, OnChanges {
     this.maxProductQty = this.product.quantity + this.product.stockQty;
   }
 
+  private timeoutMsgDisable(): void {
+    setTimeout((): void => {
+      this.disableMaxQtyErr = false;
+      this.cd.detectChanges();
+    }, 3000);
+  }
 
   removeItem(): void {
     this.removeCartItem.emit(this.product);
   }
 
-  changeQty(quantity: number): void {
-    if (!quantity) {
+  decreaseQty(): void {
+    if (this.product.quantity === 1) {
+      this.disableMaxQtyErr = false;
       return;
     }
 
-    if (quantity < 1) {
-      quantity = 1;
-    } else if (quantity > this.maxProductQty) {
-      quantity = this.maxProductQty;
-    }
-
-    const data = {...this.product,
-      quantity,
-      stockQty: this.maxProductQty
-    };
-
-    this.updateItemQty.emit(data);
+    this.decreaseItemQty.emit({...this.product,
+      stockQty: this.product.stockQty + 1
+    });
   }
 
+  increaseQty(): void {
+    if (this.product.quantity === this.maxProductQty) {
+      this.disableMaxQtyErr = true;
+      this.timeoutMsgDisable();
+      return;
+    }
+
+    this.increaseItemQty.emit({...this.product,
+      stockQty: this.product.stockQty - 1
+    });
+  }
 }

@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
   }
 
   onBuy(): void {
-    this.data.stockQty -= 1;
+    this.data.stockQty -= this.data.cartAddedQty;
     this.addToCart.emit(this.data);
   }
 }

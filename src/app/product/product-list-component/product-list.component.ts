@@ -38,7 +38,7 @@ export class ProductListComponent implements OnInit {
     const cartProsucts = this.products.map((product: IProductModel) => {
       const productObj = {...product};
       if (productObj.id === data.id) {
-        productObj.stockQty = data.stockQty - data.quantity;
+        productObj.stockQty = data.stockQty;
       }
 
       return productObj;

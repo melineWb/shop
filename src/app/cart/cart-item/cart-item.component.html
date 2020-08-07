@@ -6,20 +6,19 @@
     <div class="cart-item__desc">
         <p class="cart-item__product-name">{{product.name}}</p>
         <div class="d-flex">
-            <span class="items">Price:</span>
-            <span class="items">{{product.price}} $</span>
-        </div>
-        <div class="d-flex">
             <span class="items">Quantity:</span>
             <span class="items">
-                <input 
-                    class="cart-item__qty-field" 
-                    type="number" 
-                    min="1" 
-                    max="{{maxProductQty}}"
-                    [ngModel]="product.quantity"
-                    (ngModelChange)="changeQty($event)"/>
+                <div class="cart-item__qty-box">
+                    <button (click)='decreaseQty()' class="cart-item__change-qty">-</button>
+                    <span class="cart-item__qty">{{product.quantity}}</span>
+                    <button (click)='increaseQty()' class="cart-item__change-qty">+</button>
+                </div>
             </span>
+        </div>
+        <span *ngIf="disableMaxQtyErr" class="cart-item__err-msg">Max stock Quantity is {{maxProductQty}}</span>
+        <div class="d-flex">
+            <span class="items">Price:</span>
+            <span class="items">{{product.price}} $</span>
         </div>
     </div>
 </div>

@@ -17,30 +17,31 @@ export class CartService {
 
   addProduct(data: ICartProductModel): void {
     if (this.isExistProduct(data.id)) {
-
-      const cartProsucts = this.products.map((product: ICartProductModel) => {
-        const productObj = {...product};
-        if (productObj.id === data.id) {
-          productObj.quantity += data.quantity;
-          productObj.stockQty = data.stockQty;
-        }
-
-        return productObj;
-      });
-
-      this.products = cartProsucts;
-
+      this.increaseQty(data, data.quantity);
     } else {
       this.products.unshift(data);
     }
   }
 
-  setQty(data: ICartProductModel): void {
+  increaseQty(data: ICartProductModel, qty: number = 1): void {
     const cartProsucts = this.products.map((product: ICartProductModel) => {
       const productObj = {...product};
       if (productObj.id === data.id) {
-        productObj.quantity = data.quantity;
-        productObj.stockQty = data.stockQty - data.quantity;
+        productObj.quantity = product.quantity + qty;
+        productObj.stockQty = data.stockQty;
+      }
+      return productObj;
+    });
+
+    this.products = cartProsucts;
+  }
+
+  decreaseQty(data: ICartProductModel): void {
+    const cartProsucts = this.products.map((product: ICartProductModel) => {
+      const productObj = {...product};
+      if (productObj.id === data.id) {
+        productObj.quantity = product.quantity - 1;
+        productObj.stockQty = data.stockQty;
       }
 
       return productObj;
