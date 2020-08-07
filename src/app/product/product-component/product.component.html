@@ -30,7 +30,6 @@
                 name="qty"
                 class="card__qty-field"
                 [(ngModel)]="data.cartAddedQty" 
-                [mgModelOptions]="{updateOn: 'blur'}"
                 (ngModelChange)="changeAddedQty($event)"
                 (blur)="checkValidationQty(data.cartAddedQty)" />
             </div>
