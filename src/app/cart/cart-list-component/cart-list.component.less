@@ -8,7 +8,6 @@
     &__button {
         background: none;
         border: 0;
-        border-bottom: 2px solid #777;
         padding: 3px 10px;
         position: relative;
 
@@ -46,8 +45,9 @@
     }
 
     &__popover {
-        .box-shadow(-2px 4px 5px 0px);
+        .box-shadow(0 4px 5px 0px);
         border: 1px solid #eee;
+        border-top: 2px solid #777;
         padding: 20px;
         position: absolute;
         background: #fff;
@@ -55,7 +55,7 @@
         top: 100%;
         right: 0;
         width: 300px;
-        max-height: calc(100vh - 200px);
+        max-height: calc(100vh - 50px);
         overflow: auto;
     }
 

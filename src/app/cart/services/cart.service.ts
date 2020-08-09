@@ -79,6 +79,6 @@ export class CartService {
     return {
       totalPrice: dataObj.price.toFixed(2),
       totalQty: dataObj.quantity
-    }
+    };
   }
 }

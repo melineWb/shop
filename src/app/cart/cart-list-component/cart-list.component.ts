@@ -34,6 +34,8 @@ export class CartListComponent implements OnInit {
     this.updateProductData.emit({...product, stockQty: product.stockQty + product.quantity});
     this.cartService.removeProduct(product);
     this.getCartData();
+
+    if (!this.products.length) { this.isVisiblePopover = false; }
   }
 
   decreaseItemQty(product: ICartProductModel): void {
