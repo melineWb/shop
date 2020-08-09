@@ -28,15 +28,14 @@ export class ProductComponent implements OnInit {
   }
 
   changeAddedQty(qty: number): void {
-    if (!qty) {
-      return;
-    }
+    if (!qty) { return; }
+
     this.data.cartAddedQty = qty;
   }
 
   checkValidationQty(qty: number): void {
     if (qty < 1) {
-      this.data.cartAddedQty = 1
+      this.data.cartAddedQty = 1;
     } else if (qty > this.data.stockQty) {
       this.data.cartAddedQty = this.data.stockQty;
     }

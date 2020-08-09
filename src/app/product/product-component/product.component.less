@@ -1,6 +1,7 @@
+@import '../../shared/styles/_variables.less';
 @import '../../shared/styles/mixins/box-shadow.less';
 
-@btnColor: hsla(200, 97%, 45%, 1);
+@btnColor: @mainDecor;
 
 .d-flex {
     justify-content: space-between;
@@ -19,7 +20,7 @@ h2 {
 }
 
 .card {
-    .box-shadow(-2px 4px 5px 0px);
+    .box-shadow(0 4px 5px 0px);
     border: 1px solid #eee;
     margin: 10px;
     padding: 20px;
@@ -70,7 +71,7 @@ h2 {
         text-align: center;
 
         &:hover, &:focus {
-            border-color: #263238;
+            border-color: @mainDark;
             outline: none;
         }
     }
@@ -105,7 +106,7 @@ h2 {
 
     &__qty-limit {
         margin-top: 20px;
-        color: #b71c1c;
+        color: @red;
         font-weight: 600;
     }
 }
