@@ -1,6 +1,6 @@
-<div class="cart-item">
+<div class="cart-item" [appHighlight]="'#f2f2f2'">
     <div class="cart-item__img">
-        <img class="cart-item__img" src="{{product.imgSrc}}" alt="">
+        <img src="{{product.imgSrc}}" alt="">
         <button class="cart-item__remove" (click)="removeItem()">Remove</button>
     </div>
     <div class="cart-item__desc">

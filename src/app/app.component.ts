@@ -3,7 +3,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ICartProductModel } from './cart/models/icart-product-model';
 import { ProductListComponent } from './product/product-list-component/product-list.component';
 import { HeaderComponent } from './header/header.component';
-import { InfoMsgBoxComponent } from './shared/info-msg-box/info-msg-box.component';
+import { InfoMsgBoxComponent } from './shared/components/info-msg-box/info-msg-box.component';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,6 @@ export class AppComponent implements AfterViewInit{
   constructor() { }
 
   ngAfterViewInit(): void {
-    console.log(this);
     this.appTitle.nativeElement.innerText = 'Shop';
   }
 
