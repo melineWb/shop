@@ -9,6 +9,10 @@ export class HighlightDirective {
 
   constructor(public el: ElementRef) {}
 
+  @HostBinding('style.cursor') get getCursor(): string {
+    return 'pointer';
+  }
+
   @HostListener('mouseenter') onMouseEnter(): void {
     this.highlight(this.highlightColor || this.defaultHiglightColor);
   }

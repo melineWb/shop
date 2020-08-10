@@ -18,3 +18,17 @@ All notable changes to this project will be documented in this file.
 - Created CartService with ability to get products added to cart, add products and remove
 - When user add the same product to cart - the quantity on the prodct line will increase. 
 - Added ability to remove products from cart
+
+## [Task 2] - 08-11-2020
+### Added
+- Created separate modules: CartModule, ProductsModule, SharedModule
+- Ability increase / decrease product qty from Cart Component. If qty = max stockQty & user try to increase Qty - show msg about Max Stock Qty. Message hide after 3 sec.
+- Ability to remove products from cart & reset StockQty on Product List Components 
+- Added input on product list component to manage how many products will be added in cart. After press button 'Buy' the entered qty of product will be aded to Cart & the msg 'N product(s) added to Cart' fade in on the screen.
+- Get total Qty & total sum from CartService
+- Added СartItemComponent
+- Used OnPush strategy for presentation components
+- Added #appTitle for h1
+- Created HighlightDirective & used for CartItemComponent
+- Used ngClass on AvailabilityFlagComponent & CartListComponent
+- Used click & blur DOM events
