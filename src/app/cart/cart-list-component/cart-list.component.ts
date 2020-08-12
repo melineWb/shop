@@ -22,6 +22,7 @@ export class CartListComponent implements OnInit {
     this.getCartData();
   }
 
+  // наверное, должен быть приватным
   getCartData(): void{
     this.products = this.cartService.getProducts();
 
