@@ -16,8 +16,7 @@ export class HeaderComponent {
 
   constructor() { }
 
-  // сложно понять, где этот метод используется без поиска его в проекте
-  // желательно какой-то комментарий оставить о применении метода
+  // used in App Component to show msg how many Qty was added into cart
   getDataFromCart(): void {
     return this.cartListComponent.getCartData();
   }

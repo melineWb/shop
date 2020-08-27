@@ -22,7 +22,7 @@ export class CartListComponent implements OnInit {
     this.getCartData();
   }
 
-  // наверное, должен быть приватным
+  // used In Header Component for update cart Qty
   getCartData(): void{
     this.products = this.cartService.getProducts();
 
