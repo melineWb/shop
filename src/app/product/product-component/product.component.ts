@@ -8,7 +8,7 @@ import { IProductModel } from '../models/iproduct-model';
   styleUrls: ['./product.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   @Input() data: IProductModel;
   @Input() cartAddedQty = 1;
 
@@ -17,7 +17,8 @@ export class ProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.data.cartAddedQty = 1; // эти данные компонент получает извне, не лучшее решение их тут менять
+    // cartAddedQty does not part of data from json, this is set from this component 1 (by default) || value from qty field
+    this.data.cartAddedQty = this.cartAddedQty;
   }
 
   onBuy(): void {
@@ -25,6 +26,8 @@ export class ProductComponent implements OnInit {
     this.data.stockQty -= this.data.cartAddedQty;
     this.addToCart.emit(this.data);
     this.data.cartAddedQty = 1;
+
+    this.cartAddedQty = 1; // reset Qty in input after added to cart
   }
 
   changeAddedQty(qty: number): void {

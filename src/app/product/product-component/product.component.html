@@ -29,9 +29,9 @@
                 type="number"
                 name="qty"
                 class="card__qty-field"
-                [(ngModel)]="data.cartAddedQty" 
+                [(ngModel)]="cartAddedQty" 
                 (ngModelChange)="changeAddedQty($event)"
-                (blur)="checkValidationQty(data.cartAddedQty)" />
+                (blur)="checkValidationQty(cartAddedQty)" />
             </div>
 
             <button class="card__action" 

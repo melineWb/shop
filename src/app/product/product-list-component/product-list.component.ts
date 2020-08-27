@@ -17,9 +17,11 @@ export class ProductListComponent implements OnInit {
   constructor(private productsServiceService: ProductsService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    // желательно предусмотреть отписку
-    this.productsServiceService.getProducts()
-      .subscribe(data => { this.products = data; });
+    const prosuctSubsr = this.productsServiceService.getProducts()
+      .subscribe(data => { 
+        this.products = data;
+        prosuctSubsr.unsubscribe();
+      });
   }
 
   addToCart(data: IProductModel): void {
