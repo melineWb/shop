@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.data.cartAddedQty = 1;
+    this.data.cartAddedQty = 1; // эти данные компонент получает извне, не лучшее решение их тут менять
   }
 
   onBuy(): void {
