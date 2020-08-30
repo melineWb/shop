@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
   useValue: {
     app: 'ShopApp',
     ver: '1.0',
-    api_url: 'http://localhost:4200/'
+    apiUrl: 'http://localhost:4200/'
   }
 })
 
 export class ConstantsService {
   app: string;
   ver: string;
-  api_url:string;
+  apiUrl: string;
 }

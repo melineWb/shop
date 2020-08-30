@@ -14,7 +14,7 @@ import { LocalStorageService } from './core/services/local-storage.service';
 })
 export class AppComponent implements OnInit, AfterViewInit{
   username: string | object = null;
-  
+
   @ViewChild(HeaderComponent) private headerComponent: HeaderComponent;
   @ViewChild(ProductListComponent) private productListComponent: ProductListComponent;
   @ViewChild(InfoMsgBoxComponent) private infoMsgBoxComponent: InfoMsgBoxComponent;
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit, AfterViewInit{
     this.modalLoginComponent.togleModal(flag);
   }
 
-  onUserLoggedIn(name: string): void {
+  userLoggedIn(name: string): void {
     this.username = name;
   }
 }

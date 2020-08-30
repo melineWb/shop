@@ -8,8 +8,8 @@ import { ICartProductModel } from '../models/icart-product-model';
 
 export class CartService {
   private cartProducts: ICartProductModel[] = [];
-  private totalQuantity: number = 0;
-  private totalSum: number = 0;
+  private totalQuantity = 0;
+  private totalSum = 0;
 
   constructor() { }
 
@@ -98,6 +98,6 @@ export class CartService {
   }
 
   getTotalQty(): number {
-    return this.totalQuantity
+    return this.totalQuantity;
   }
 }

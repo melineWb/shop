@@ -12,10 +12,10 @@ export class ModalLoginComponent implements OnInit {
   loginForm: FormGroup;
   visible = false;
 
-  @Output() onUserLoggedIn = new EventEmitter<string>();
+  @Output() userLoggedIn = new EventEmitter<string>();
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private localStorageService: LocalStorageService,
     private configOptionsService: ConfigOptionsService) {}
 
@@ -30,7 +30,7 @@ export class ModalLoginComponent implements OnInit {
         ]
       ],
         password: ['', [
-          Validators.required, 
+          Validators.required,
           Validators.minLength(6)
         ]
       ]
@@ -46,12 +46,12 @@ export class ModalLoginComponent implements OnInit {
 
       return;
     }
-    
+
     const userName = this.loginForm.value.name;
 
     this.localStorageService.setItem('username', userName);
     this.configOptionsService.set({ id: Math.floor((Math.random() * 100) + 1) });
-    this.onUserLoggedIn.emit(userName);
+    this.userLoggedIn.emit(userName);
 
     this.loginForm.reset();
   }

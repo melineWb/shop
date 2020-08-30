@@ -4,7 +4,7 @@ import { GeneratorService } from '../../../core/services/generator.service';
 import { GeneratorDataService, GeneratorFactory } from '../../../core/services/generator.factory';
 import { ConstantsService } from '../../../core/services/constants.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
-import { ConfigOptionsService } from '../../../core/services/config-options.service'
+import { ConfigOptionsService } from '../../../core/services/config-options.service';
 
 @Component({
   selector: 'app-about',
@@ -33,7 +33,7 @@ export class AboutComponent implements OnInit {
     }
 
     if (this.constantsService) {
-      this.appData = `${this.constantsService.app} ${this.constantsService.ver}`
+      this.appData = `${this.constantsService.app} ${this.constantsService.ver}`;
     }
 
     if (this.localStorageService) {

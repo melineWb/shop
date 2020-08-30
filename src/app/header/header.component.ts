@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit{
   menu = [{
     name: 'Shop',
     link: '/',
-  }]
+  }];
 
   @ViewChild(CartListComponent)
   private cartListComponent: CartListComponent;

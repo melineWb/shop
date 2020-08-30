@@ -8,7 +8,7 @@ import { IProductModel } from '../models/iproduct-model';
   styleUrls: ['./product.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit{
   @Input() data: IProductModel;
   @Input() cartAddedQty = 1;
 

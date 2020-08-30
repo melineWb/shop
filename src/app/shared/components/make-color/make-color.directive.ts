@@ -14,12 +14,11 @@ export class MakeColorDirective {
     return isColorExist ? this.resetColor() : this.makeColor(this.color || this.defaultColor);
   }
 
-  private makeColor(color) {
+  private makeColor(color): void {
     this.renderer.setStyle(this.elRef.nativeElement, 'color', color);
   }
 
-  private resetColor() {
+  private resetColor(): void {
     this.renderer.removeStyle(this.elRef.nativeElement, 'color');
   }
-
 }
