@@ -32,3 +32,17 @@ All notable changes to this project will be documented in this file.
 - Created HighlightDirective & used for CartItemComponent
 - Used ngClass on AvailabilityFlagComponent & CartListComponent
 - Used click & blur DOM events
+
+## [Task 3] - 08-30-2020
+
+### Added
+- Added LocalStorageService, ConfigOptionsService, ConstantsService, GeneratorService
+- Added ProfileModule and ModalLoginComponent with ability to login and set data into LocalStorageService
+- Modified HeaderComponent: Added buttons Login / Logout and show usename if user logged in
+- Created AboutComponent
+- Created directive appMakeColor, add button 'Like' into ProductComponent. When user click on this button - the appMakeColor works and button color become red.
+
+### Changed
+- Changed CartService: Added ability to get totalQuantity, totalSum, updateCartData and removeAllProducts
+- Changed tmpl of CartListComponent: added button to removeAllProducts
+- Modified header to show AppName from ConstantsService

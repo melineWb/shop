@@ -1,5 +1,10 @@
 <div class="card">
     <app-availability-flag [isAvailable]="data.isAvailabile && data.stockQty > 0"></app-availability-flag>
+    <div class="card__like-box">
+        <button class="card__like-btn" [appMakeColor]>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </button>
+    </div>
     <div class="card__img-box">
         <img class="card__img" [src]=data.imgSrc alt="">
     </div>

@@ -26,8 +26,7 @@ export class ModalLoginComponent implements OnInit {
   private initForm(): void {
     this.loginForm = this.fb.group({
       name: ['', [
-          Validators.required,
-          Validators.pattern(/[A-z]/)
+          Validators.required
         ]
       ],
         password: ['', [

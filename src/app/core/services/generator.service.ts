@@ -1,17 +1,12 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
 export class GeneratorService {
 
   constructor() { }
 
-  generate(length: number = 6): string {
-    let text = '';
+  generate(n: number = 6): string {
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let text = '';
   
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < n; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
   

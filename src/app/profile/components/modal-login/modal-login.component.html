@@ -5,7 +5,7 @@
                 <div class="modal__title">Login</div>
                 <div class="modal__close-box">
                     <button class="modal__close" (click)="togleModal(false)">
-                        <img class="modal__close-ico" src="https://image.flaticon.com/icons/svg/61/61155.svg" alt="close"/>
+                        <i class="fa fa-times modal__close-ico" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                         <input type="text" id="name" formControlName="name" class="modal__field">
 
                         <div class="modal__error" *ngIf="isControlInvalid('name')">
-                            Allowed symbols for name [a-z]
+                            Field is required
                         </div>
                     </label>
 
@@ -31,7 +31,7 @@
 
                 </div>
                 <div class="modal__footer">
-                    <button type="submit" class="modal__btn">отправить</button>
+                    <button type="submit" class="modal__btn" [disabled]= "loginForm.invalid">отправить</button>
                 </div>
             </form>
         </div>
