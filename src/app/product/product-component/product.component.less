@@ -21,11 +21,12 @@ h2 {
 
 .card {
     .box-shadow(0 4px 5px 0px);
-    border: 1px solid #eee;
+    border: 1px solid @gray0;
     margin: 10px;
     padding: 20px;
     position: relative;
     width: 100%;
+    background: #fff;
 
     &__img {
         max-width: 100%;
@@ -43,7 +44,7 @@ h2 {
     }
 
     &__tags {
-        border-top: 1px solid #eee;
+        border-top: 1px solid @gray0;
         margin-top: 20px;
         padding-top: 20px;
     }
@@ -116,4 +117,12 @@ h2 {
     flex-basis: 25%;
     display: flex;
     align-items: stretch;
+
+    @media only screen and (max-width: 1024px) {
+        flex-basis: 50%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        flex-basis: 100%;
+    }
 }

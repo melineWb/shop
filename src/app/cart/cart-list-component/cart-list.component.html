@@ -6,6 +6,10 @@
     </button>
     <div class="cart__popover" [ngClass]="{hidden: !isVisiblePopover}">
         <h3 class="cart__title">Cart</h3>
+
+        <div *ngIf="totalQty > 0">
+            <button class="cart__remove" (click)="removeAllItems()">Remove all</button>
+        </div>
         
         <div *ngFor="let product of products">
             <app-cart-item 

@@ -10,10 +10,10 @@ import { HighlightDirective } from './components/highlight/highlight.directive';
   declarations: [
     AvailabilityFlagComponent,
     InfoMsgBoxComponent,
-    HighlightDirective
+    HighlightDirective,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     AvailabilityFlagComponent,

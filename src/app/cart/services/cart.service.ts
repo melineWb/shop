@@ -7,24 +7,46 @@ import { ICartProductModel } from '../models/icart-product-model';
 })
 
 export class CartService {
-  private products: ICartProductModel[] = [];
+  private cartProducts: ICartProductModel[] = [];
+  private totalQuantity: number = 0;
+  private totalSum: number = 0;
 
   constructor() { }
 
   private isExistProduct(id: string): boolean {
-    return this.products.some((product) => product.id === id);
+    return this.cartProducts.some((product) => product.id === id);
+  }
+
+  private updateCartData(): any {
+    const dataObj = this.cartProducts.reduce((data: any, product: ICartProductModel) => {
+      const sum = data.sum + product.price * product.quantity;
+      const quantity = data.quantity + product.quantity;
+
+      return {
+        sum,
+        quantity
+      };
+    }, {
+      sum: 0,
+      quantity: 0
+    });
+
+    this.totalSum = dataObj.sum.toFixed(2);
+    this.totalQuantity = dataObj.quantity;
   }
 
   addProduct(data: ICartProductModel): void {
     if (this.isExistProduct(data.id)) {
       this.increaseQty(data, data.quantity);
     } else {
-      this.products.unshift(data);
+      this.cartProducts.unshift(data);
     }
+
+    this.updateCartData();
   }
 
   increaseQty(data: ICartProductModel, qty: number = 1): void {
-    const cartProsucts = this.products.map((product: ICartProductModel) => {
+    const cartProsucts = this.cartProducts.map((product: ICartProductModel) => {
       const productObj = {...product};
       if (productObj.id === data.id) {
         productObj.quantity = product.quantity + qty;
@@ -33,11 +55,12 @@ export class CartService {
       return productObj;
     });
 
-    this.products = cartProsucts;
+    this.cartProducts = cartProsucts;
+    this.updateCartData();
   }
 
   decreaseQty(data: ICartProductModel): void {
-    const cartProsucts = this.products.map((product: ICartProductModel) => {
+    const cartProsucts = this.cartProducts.map((product: ICartProductModel) => {
       const productObj = {...product};
       if (productObj.id === data.id) {
         productObj.quantity = product.quantity - 1;
@@ -47,38 +70,34 @@ export class CartService {
       return productObj;
     });
 
-    this.products = cartProsucts;
+    this.cartProducts = cartProsucts;
+    this.updateCartData();
   }
 
   removeProduct(data): void {
-    this.products.map((product: ICartProductModel, index) => {
+    this.cartProducts.map((product: ICartProductModel, index) => {
       if (product.id === data.id) {
-        this.products.splice(index, 1);
+        this.cartProducts.splice(index, 1);
       }
     });
+
+    this.updateCartData();
+  }
+
+  removeAllProducts(): void {
+    this.cartProducts = [];
+    this.updateCartData();
   }
 
   getProducts(): ICartProductModel[] {
-    return this.products;
+    return this.cartProducts;
   }
 
-  getTotalData(): any {
-    const dataObj = this.products.reduce((data: any, product: ICartProductModel) => {
-      const price = data.price + product.price * product.quantity;
-      const quantity = data.quantity + product.quantity;
+  getTotalSum(): number {
+    return this.totalSum;
+  }
 
-      return {
-        price,
-        quantity
-      };
-    }, {
-      price: 0,
-      quantity: 0
-    });
-
-    return {
-      totalPrice: dataObj.price.toFixed(2),
-      totalQty: dataObj.quantity
-    };
+  getTotalQty(): number {
+    return this.totalQuantity
   }
 }
