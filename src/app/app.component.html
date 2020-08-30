@@ -1,10 +1,21 @@
-<app-header (updateProductListData)="updateProductListData($event)"></app-header>
-<div>
+<app-header 
+  [username]="username"
+  (updateProductListData)="updateProductListData($event)"
+  (triggerLoginModal)="triggerLoginModal($event)"
+  (showInfoMsg)="showInfoMsg($event)">
+</app-header>
+
+<div class="main-container">
   <div class="container">
     <h1 class="text-center" #appTitle></h1>
     <hr class="title-divider"/>
-    <app-product-list (updateCart)="updateCart($event)"></app-product-list>
-  </div>
+    <app-product-list (updateCart)="updateCart($event)">
+    </app-product-list>
 
+    <app-about></app-about>
+  </div>
+  
   <app-info-msg-box></app-info-msg-box>
 </div>
+
+<app-modal-login (onUserLoggedIn)="onUserLoggedIn($event)"></app-modal-login>

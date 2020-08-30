@@ -1,12 +1,61 @@
 @import '../shared/styles/mixins/box-shadow.less';
+@import '../shared/styles/_variables.less';
 
-header{
+.header{
     .box-shadow(0px 4px 5px 0px);
-    display: block;
     position: fixed;
     width: 100%;
     z-index: 1000;
     background: #fff;
     padding: 0 20px;
     top: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__menu-link-wrapper {
+        height: 100%;
+    }
+
+    &__menu-link {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 16px;
+        color: @mainDark;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 10px;
+        text-decoration: none;
+
+        &:hover {
+            background: @mainDecor;
+            color: #fff;
+        }
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+    }
+
+    &__user-name {
+        color: @gray1;
+        padding: 0 10px;
+    }
+
+    &__appname {
+        background: @mainDark;
+        padding: 8px 15px;
+        border-radius: 15px;
+        color: #fff;
+        font-size: 10px;
+        margin-right: 10px;
+    }
 }

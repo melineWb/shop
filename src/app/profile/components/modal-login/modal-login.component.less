@@ -1,0 +1,112 @@
+@import '../../../shared/styles/_variables.less';
+@import '../../../shared/styles/mixins/box-shadow.less';
+
+.modal {
+    .box-shadow(0px 4px 5px 0px);
+    background: #fff;
+    width: 400px;
+    max-width: 100%;
+    position: relative;
+
+    &__overlay {
+        position: fixed;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    &__header {
+        padding: 20px 0;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    &__close-box {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+
+    &__close {
+        background: none;
+        border: 0;
+        box-shadow: none;
+        font-size: 18px;
+    }
+
+    &__close-ico {
+        max-width: 100%;
+    }
+
+    &__content {
+        padding: 20px 20px 30px;
+    }
+
+    &__footer {
+        text-align: center;
+        border-top: 1px solid @gray0;
+        padding: 20px;
+    }
+
+    &__btn {
+        background: @mainDark;
+        border: 0;
+        box-shadow: none;
+        border-radius: 20px;
+        text-align: center;
+        color: #fff;
+        padding: 12px 30px;
+        text-transform: uppercase;
+        font-weight: 600;
+
+        &:hover {
+            background-color: lighten(@mainDark, 7%);
+            cursor: pointer;
+        }
+
+        &:focus {
+            outline: none;
+            background-color: lighten(@mainDark, 14%);
+        }
+
+        &:disabled {
+            background-color: #777;
+            pointer-events: none;
+        }
+    }
+
+    &__form-item {
+        display: block;
+        margin-bottom: 20px;
+        text-align: 14px;
+        text-align: center;
+    }
+
+    &__field {
+        width: 100%;
+        margin-top: 20px;
+        font-size: 14px;
+        padding: 8px 20px;
+        border-radius: 7px;
+        box-shadow: none;
+        border: 1px solid #777;
+        text-align: center;
+
+        &:hover, &:focus {
+            border-color: @mainDark;
+            outline: none;
+        }
+    }
+
+    &__error {
+        color: @red;
+        margin: 10px 0;
+    }
+}

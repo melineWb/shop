@@ -1,0 +1,39 @@
+<ng-container *ngIf="visible">
+    <div class="modal__overlay">
+        <div class="modal">
+            <div class="modal__header">
+                <div class="modal__title">Login</div>
+                <div class="modal__close-box">
+                    <button class="modal__close" (click)="togleModal(false)">
+                        <i class="fa fa-times modal__close-ico" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <form [formGroup]="loginForm" (submit)="onSubmit()">
+                <div class="modal__content">
+                    <label class="modal__form-item">
+                        Name or email
+                        <input type="text" id="name" formControlName="name" class="modal__field">
+
+                        <div class="modal__error" *ngIf="isControlInvalid('name')">
+                            Field is required
+                        </div>
+                    </label>
+
+                    <label class="modal__form-item">
+                        Password
+                        <input type="password" id="email" formControlName="password" class="modal__field">
+
+                        <div class="modal__error" *ngIf="isControlInvalid('password')">
+                            Min password length 6
+                        </div>
+                    </label>
+
+                </div>
+                <div class="modal__footer">
+                    <button type="submit" class="modal__btn" [disabled]= "loginForm.invalid">отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-container>

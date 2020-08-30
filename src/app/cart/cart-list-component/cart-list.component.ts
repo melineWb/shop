@@ -15,6 +15,7 @@ export class CartListComponent implements OnInit {
   totalQty = 0;
 
   @Output() updateProductData = new EventEmitter<ICartProductModel>();
+  @Output() removeCartProducts = new EventEmitter<any>();
 
   constructor(private cartService: CartService) { }
 
@@ -25,10 +26,8 @@ export class CartListComponent implements OnInit {
   // used In Header Component for update cart Qty
   getCartData(): void{
     this.products = this.cartService.getProducts();
-
-    const totalCartData = this.cartService.getTotalData();
-    this.totalPrice = totalCartData.totalPrice;
-    this.totalQty = totalCartData.totalQty;
+    this.totalPrice = this.cartService.getTotalSum();
+    this.totalQty = this.cartService.getTotalQty();
   }
 
   removeCartItem(product: ICartProductModel): void {
@@ -49,6 +48,13 @@ export class CartListComponent implements OnInit {
     this.updateProductData.emit(product);
     this.cartService.increaseQty(product);
     this.getCartData();
+  }
+
+  removeAllItems(): void {
+    this.cartService.removeAllProducts();
+    this.getCartData();
+    this.isVisiblePopover = false;
+    this.removeCartProducts.emit();
   }
 
   toglePopover(): void {
