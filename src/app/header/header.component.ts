@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit{
   private cartListComponent: CartListComponent;
 
 
-  @Output() updateProductListData = new EventEmitter<ICartProductModel>();
+  @Output() updateProductListData = new EventEmitter<ICartProductModel[]>();
   @Output() showInfoMsg = new EventEmitter<string>();
   @Output() triggerLoginModal = new EventEmitter<boolean>();
 
@@ -40,12 +40,13 @@ export class HeaderComponent implements OnInit{
     return this.cartListComponent.getCartData();
   }
 
-  removeCartProducts(): void {
+  removeCartProducts(data: ICartProductModel[]): void {
+    this.updateProductListData.emit(data);
     this.showInfoMsg.emit('All items in the cart was successfully removed');
   }
 
-  updateProductData(product: ICartProductModel): void {
-    this.updateProductListData.emit(product);
+  updateProductData(products: ICartProductModel[]): void {
+    this.updateProductListData.emit(products);
   }
 
   openLoginModal(): void {

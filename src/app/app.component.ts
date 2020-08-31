@@ -46,8 +46,8 @@ export class AppComponent implements OnInit, AfterViewInit{
     this.infoMsgBoxComponent.showMsg(msg);
   }
 
-  updateProductListData(product: ICartProductModel): void {
-    this.productListComponent.updateProductData(product);
+  updateProductListData(products: ICartProductModel[]): void {
+    this.productListComponent.updateProductData(products);
   }
 
   triggerLoginModal(flag: boolean): void {

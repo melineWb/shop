@@ -1,4 +1,5 @@
 import { Component, Output, OnInit, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { ProductsService } from '../services/products.service';
 import { CartService } from '../../cart/services/cart.service';
@@ -10,18 +11,14 @@ import { ICartProductModel } from 'src/app/cart/models/icart-product-model';
   templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
-  products: IProductModel[];
+  products$: Observable<IProductModel[]>;
 
   @Output() updateCart = new EventEmitter<number>();
 
-  constructor(private productsServiceService: ProductsService, private cartService: CartService) { }
+  constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    const prosuctSubsr = this.productsServiceService.getProducts()
-      .subscribe(data => {
-        this.products = data;
-        prosuctSubsr.unsubscribe();
-      });
+    this.products$ = this.productsService.getProducts();
   }
 
   addToCart(data: IProductModel): void {
@@ -37,16 +34,23 @@ export class ProductListComponent implements OnInit {
     this.updateCart.emit(data.cartAddedQty);
   }
 
-  updateProductData(data: ICartProductModel): void {
-    const cartProsucts = this.products.map((product: IProductModel) => {
-      const productObj = {...product};
-      if (productObj.id === data.id) {
-        productObj.stockQty = data.stockQty;
-      }
+  updateProductData(data: ICartProductModel[]): void {
+    this.products$.subscribe(products => {
+      const cartProducts = products.map((product: IProductModel) => {
+        const productObj = {...product};
 
-      return productObj;
+        data.forEach((item): void => {
+          if (productObj.id === item.id) {
+            productObj.stockQty = item.stockQty;
+          }
+        });
+        return productObj;
+      });
+
+      this.products$ = new Observable((observer) => {
+          observer.next(cartProducts);
+          observer.complete();
+      });
     });
-
-    this.products = cartProsucts;
   }
 }

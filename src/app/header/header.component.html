@@ -1,8 +1,6 @@
 <header class="header">
     <div class="header__left">
         <span class="header__appname">{{appName}}</span>
-        <span *ngIf="username" class="header__user-name">Hi, {{username}}</span>
-
         <ul class="header__menu">
             <ng-container *ngFor="let item of menu">
                 <li class="header__menu-link-wrapper">
@@ -10,23 +8,22 @@
                 </li>
             </ng-container>
 
-            <ng-container *ngIf="username; then logoutBlc; else loginBlc"></ng-container>
-
-            <ng-template #logoutBlc>
-                <li class="header__menu-link-wrapper">
-                    <a href="#" class="header__menu-link" (click)="$event.preventDefault(); onLogout()">Logout</a>
-                </li>
-            </ng-template>
-
-            <ng-template #loginBlc>
+            <ng-container *ngIf="!username">
                 <li class="header__menu-link-wrapper">
                     <a href="#" class="header__menu-link" (click)="$event.preventDefault(); openLoginModal()">Login</a>
                 </li>
-            </ng-template>
+            </ng-container>
         </ul>
+
+        <ng-container *ngIf="username">
+            <span *ngIf="username" class="header__user-name">Hi, {{username | uppercase}}</span>
+            <a href="#" class="header__menu-link" (click)="$event.preventDefault(); onLogout()">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </a>
+        </ng-container>
     </div>
     <app-cart-list 
         (updateProductData)="updateProductData($event)"
-        (removeCartProducts)="removeCartProducts()"
+        (removeCartProducts)="removeCartProducts($event)"
     ></app-cart-list>
 </header>

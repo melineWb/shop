@@ -84,9 +84,12 @@ export class CartService {
     this.updateCartData();
   }
 
-  removeAllProducts(): void {
+  removeAllProducts(): ICartProductModel[] {
+    const removedProducts = this.cartProducts;
     this.cartProducts = [];
     this.updateCartData();
+
+    return removedProducts;
   }
 
   getProducts(): ICartProductModel[] {

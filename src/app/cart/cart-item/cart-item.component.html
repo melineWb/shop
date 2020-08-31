@@ -18,7 +18,7 @@
         <span *ngIf="disableMaxQtyErr" class="cart-item__err-msg">Max stock Quantity is {{maxProductQty}}</span>
         <div class="d-flex">
             <span class="items">Price:</span>
-            <span class="items">{{product.price}} $</span>
+            <span class="items">{{product.price | currency:"USD":"symbol"}}</span>
         </div>
     </div>
 </div>
