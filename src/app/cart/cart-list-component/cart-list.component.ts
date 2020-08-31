@@ -14,8 +14,8 @@ export class CartListComponent implements OnInit {
   products: ICartProductModel[];
   totalQty = 0;
 
-  @Output() updateProductData = new EventEmitter<ICartProductModel>();
-  @Output() removeCartProducts = new EventEmitter<any>();
+  @Output() updateProductData = new EventEmitter<ICartProductModel[]>();
+  @Output() removeCartProducts = new EventEmitter<ICartProductModel[]>();
 
   constructor(private cartService: CartService) { }
 
@@ -31,7 +31,10 @@ export class CartListComponent implements OnInit {
   }
 
   removeCartItem(product: ICartProductModel): void {
-    this.updateProductData.emit({...product, stockQty: product.stockQty + product.quantity});
+    const productsData = [];
+    productsData.push({...product, stockQty: product.stockQty + product.quantity});
+
+    this.updateProductData.emit(productsData);
     this.cartService.removeProduct(product);
     this.getCartData();
 
@@ -39,22 +42,32 @@ export class CartListComponent implements OnInit {
   }
 
   decreaseItemQty(product: ICartProductModel): void {
-    this.updateProductData.emit(product);
+    const productsData: ICartProductModel[] = [];
+    productsData.push(product);
+
+    this.updateProductData.emit(productsData);
     this.cartService.decreaseQty(product);
     this.getCartData();
   }
 
   increaseItemQty(product: ICartProductModel): void {
-    this.updateProductData.emit(product);
+    const productsData: ICartProductModel[] = [];
+    productsData.push(product);
+
+    this.updateProductData.emit(productsData);
     this.cartService.increaseQty(product);
     this.getCartData();
   }
 
   removeAllItems(): void {
-    this.cartService.removeAllProducts();
+    let removedProduts = this.cartService.removeAllProducts();
+    removedProduts =  removedProduts.map((product: ICartProductModel): ICartProductModel => {
+      return {...product, stockQty: product.stockQty + product.quantity};
+    });
+
     this.getCartData();
     this.isVisiblePopover = false;
-    this.removeCartProducts.emit();
+    this.removeCartProducts.emit(removedProduts);
   }
 
   toglePopover(): void {

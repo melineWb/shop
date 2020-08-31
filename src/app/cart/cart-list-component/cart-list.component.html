@@ -28,7 +28,7 @@
 
         <ng-template #productCardContainer>
             <div class="cart__total">
-                <span>{{totalPrice}} $</span>
+                <span>{{totalPrice | currency:"USD":"symbol"}}</span>
             </div>
         </ng-template>
     </div>

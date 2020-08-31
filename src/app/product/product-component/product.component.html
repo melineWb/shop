@@ -21,7 +21,7 @@
             <span>Price:</span>
             <span>
                 <ng-container *ngIf="data.price; then priceData; else emptyPrice"></ng-container>
-                <ng-template #priceData>{{data.price}} $</ng-template>
+                <ng-template #priceData>{{data.price | currency:"USD":"symbol"}}</ng-template>
                 <ng-template #emptyPrice>--</ng-template>
             </span>
         </div>
