@@ -15,6 +15,8 @@ export class AvailabilityFlagComponent implements OnInit, OnChanges {
     this.setDataFlag();
   }
 
+  // первый раз выполниться перед ngOnInit()
+  // может быть не надо вызывать в ngOnInit()
   ngOnChanges(): void {
     this.setDataFlag();
   }
