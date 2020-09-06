@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { CartListComponent } from './cart-list-component/cart-list.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
@@ -11,8 +10,7 @@ import { SharedModule } from '../shared/shared.module';
     CartItemComponent
   ],
   imports: [
-    CommonModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [
     CartListComponent
