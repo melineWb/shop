@@ -20,6 +20,7 @@ export class AboutComponent implements OnInit {
   str: string;
   appData: string;
   username: string | object = null;
+  title = 'about block';
 
   constructor(
     @Optional() @Inject(GeneratorDataService) private generatorDataService: string,

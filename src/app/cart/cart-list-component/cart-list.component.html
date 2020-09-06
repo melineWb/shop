@@ -21,6 +21,29 @@
             </app-cart-item>
         </div>
 
+        <div *ngIf="totalQty > 0" class="cart__sorted-box">
+            <ng-select 
+                [items]="orderItems"
+                class="cart__select"
+                bindLabel="name"
+                bindValue="id"
+                (change)="reOrder()"
+                [searchable]=false
+                [clearable]=false
+                dropdownPosition="top"
+                [(ngModel)]="selectedOrder">
+            </ng-select>
+
+            <div class="cart__sort-box">
+                <button class="cart__sort-btn" [ngClass]="{selected: !orderFlag}" (click)="revertSortOrder()">
+                    <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                </button>
+                <button class="cart__sort-btn" [ngClass]="{selected: orderFlag}" (click)="revertSortOrder()">
+                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
         <div *ngIf="totalQty > 0; then productCardContainer; else emptyCard"></div>
         <ng-template #emptyCard>
             <span>Your cart is empty</span>

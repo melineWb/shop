@@ -46,3 +46,14 @@ All notable changes to this project will be documented in this file.
 - Changed CartService: Added ability to get totalQuantity, totalSum, updateCartData and removeAllProducts
 - Changed tmpl of CartListComponent: added button to removeAllProducts
 - Modified header to show AppName from ConstantsService
+
+## [Task 4] - 09-06-2020
+### Changed templates
+- CartItemComponent, CartListComponent, ProductComponent - added pipes for currency 
+- HeaderComponent - uppercase pipe
+- AboutComponent - titlecase pipe
+- ProductListComponent - async pipe
+
+### Added
+- OrderByPipe and included it in CartListComponent
+- Changed SharedModule to export CommonModule, FormsModule etc.
