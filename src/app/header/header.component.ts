@@ -58,3 +58,4 @@ export class HeaderComponent implements OnInit{
     this.username = null;
   }
 }
+// можно переместить в layout/components/header
