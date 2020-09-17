@@ -8,7 +8,7 @@ import { ProductModule } from './product/product.module';
 import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './layout/components/header/header.component';
 import { AboutComponent } from './layout/components/about/about.component';
 
 @NgModule({

@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 
-import { ICartProductModel } from '../cart/models/icart-product-model';
-import { CartListComponent } from '../cart/cart-list-component/cart-list.component';
-import { LocalStorageService } from '../core/services/local-storage.service';
-import { ConstantsService } from '../core/services/constants.service';
+import { ICartProductModel } from '../../../cart/models/icart-product-model';
+import { CartListComponent } from '../../../cart/cart-list-component/cart-list.component';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { ConstantsService } from '../../../core/services/constants.service';
 
 @Component({
   selector: 'app-header',
@@ -58,4 +58,3 @@ export class HeaderComponent implements OnInit{
     this.username = null;
   }
 }
-// можно переместить в layout/components/header

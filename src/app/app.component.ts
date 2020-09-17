@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 
 import { ICartProductModel } from './cart/models/icart-product-model';
 import { ProductListComponent } from './product/product-list-component/product-list.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './layout/components/header/header.component';
 import { InfoMsgBoxComponent } from './shared/components/info-msg-box/info-msg-box.component';
 import { ModalLoginComponent } from './profile/components/modal-login/modal-login.component';
 import { LocalStorageService } from './core/services/local-storage.service';
