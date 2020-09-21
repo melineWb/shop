@@ -41,6 +41,19 @@ h2 {
 
     &__title {
         text-align: center;
+        margin: 20px 0;
+    }
+
+    &__title-link {
+        font-size: 24px;
+        color: @mainDark;
+        text-decoration: none;
+
+        &:hover, &:focus {
+            color: @mainDecor;
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
 
     &__tags {

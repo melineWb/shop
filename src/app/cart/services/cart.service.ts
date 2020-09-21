@@ -15,11 +15,13 @@ export class CartService {
   private cartResult: ICartResultModel;
   private dataCartResult: any;
   private msg: string;
+  private removedProducts: ICartProductModel[] = [];
   data$: any;
 
   constructor() {
     this.cartResult = {
       cartProducts: this.cartProducts,
+      removedProducts: this.removedProducts,
       totalQuantity: this.totalQuantity,
       totalSum: this.totalSum,
       msg: this.msg,
@@ -55,6 +57,7 @@ export class CartService {
   updateAppData(): any {
     const dataResult = {
       cartProducts: this.cartProducts,
+      removedProducts: this.removedProducts,
       totalSum: this.totalSum,
       totalQuantity: this.totalQuantity,
       msg: this.msg
@@ -84,6 +87,7 @@ export class CartService {
 
     this.cartProducts = cartProsucts;
     this.msg = `${qty} item(s) of ${data.name} added to cart`;
+    this.removedProducts = [];
 
     this.updateCartData();
   }
@@ -101,27 +105,31 @@ export class CartService {
     this.msg = `Qty of ${data.name} product decreased`;
 
     this.cartProducts = cartProsucts;
+    this.removedProducts = [];
+
     this.updateCartData();
   }
 
   removeProduct(data): void {
+    this.removedProducts = [];
+    this.removedProducts.push({...data, stockQty: data.stockQty + data.quantity});
+
     this.cartProducts.map((product: ICartProductModel, index) => {
       if (product.id === data.id) {
         this.cartProducts.splice(index, 1);
       }
     });
-
     this.msg = `Product ${data.name} removed`;
 
     this.updateCartData();
   }
 
-  removeAllProducts(): ICartProductModel[] {
-    const removedProducts = this.cartProducts;
+  removeAllProducts(): void {
+    this.removedProducts = this.cartProducts.map((product: ICartProductModel): ICartProductModel => {
+      return {...product, stockQty: product.stockQty + product.quantity};
+    });
     this.cartProducts = [];
-
     this.msg = `All items in the cart was successfully removed`;
     this.updateCartData();
-    return removedProducts;
   }
 }

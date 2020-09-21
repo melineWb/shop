@@ -31,8 +31,6 @@ export class AppModule {
     const replacer = (key: string, value: any): string => {
       return typeof value === 'function' ? value.name : value;
     };
-
-    console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
   }
 }
 

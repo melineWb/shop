@@ -18,4 +18,8 @@ export class ProductsService {
   getProducts(): Observable<IProductModel[]> {
     return this.http.get<IProductModel[]>(this.dataJson);
   }
+
+  updateProductListData(): void {
+
+  }
 }

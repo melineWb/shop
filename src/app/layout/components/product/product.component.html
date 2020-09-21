@@ -1,1 +1,80 @@
-<p>product works!</p>
+<div class="container">
+    <div class="product-cart__container" *ngIf="data">
+        <div class="d-flex product-cart">
+            <div class="product-cart__box-img">
+                <div class="product-cart__like-box">
+                    <button class="product-cart__like-btn" [appMakeColor]>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="product-cart__img-box">
+                    <img class="product-cart__img" [src]=data.imgSrc alt="">
+                </div>
+            </div>
+
+            <div class="product-cart__box">
+                <h2 class="product-cart__title">{{data.name}}</h2>
+
+                <div class="d-flex">
+                    <span class="product-cart__price">
+                        <ng-container *ngIf="data.price; then priceData; else emptyPrice"></ng-container>
+                        <ng-template #priceData>{{data.price | currency:"USD":"symbol"}}</ng-template>
+                        <ng-template #emptyPrice>--</ng-template>
+                    </span>
+                </div>
+
+                <div class="card-description">
+                    <div class="d-flex">
+                        <span class="product-cart__descc-title">Availability:</span>
+                        <span [ngClass]="{
+                            'product-cart__availability': true,
+                            'product-cart__availability--off': !data.isAvailabile || data.stockQty === 0
+                            }">
+                            <ng-content *ngIf="data.isAvailabile && data.stockQty > 0; then availableTmpl; else notAvailableTmpl;"></ng-content>
+                            <ng-template #availableTmpl>IN STOCK</ng-template>
+                            <ng-template #notAvailableTmpl>NOT AVAILABLE</ng-template>
+                        </span>
+                    </div>
+
+                    <div class="d-flex" *ngIf="data.category">
+                        <span class="product-cart__descc-title">Category:</span>
+                        <span>{{data.category}}</span>
+                    </div>
+
+                    <div class="product-cart__description" *ngIf="data.description">
+                        <p>{{data.description}}</p>
+                    </div>
+            
+                    <form class="product-cart__action-box">
+                        <div class="product-cart__qty-field-wrapper" *ngIf= "data.isAvailabile && data.stockQty > 0">
+                            <input 
+                            min="1" 
+                            max="{{data.stockQty}}"
+                            type="number"
+                            name="qty"
+                            class="product-cart__qty-field"
+                            [(ngModel)]="cartAddedQty" 
+                            (ngModelChange)="changeAddedQty($event)"
+                            (blur)="checkValidationQty(cartAddedQty)" />
+                        </div>
+            
+                        <button class="product-cart__action" 
+                            (click)="onBuy()"
+                            [disabled]= "!data.isAvailabile || data.stockQty === 0">
+                            Buy
+                        </button>
+                    </form>
+            
+                    <div class="d-flex product-cart__qty-limit" *ngIf="data.stockQty <= 5 && data.stockQty > 0">
+                        <span>Limited Qty:</span>
+                        <span>{{data.stockQty}}</span>
+                    </div>
+            
+                    <div class="product-cart__tags" *ngIf="data.tags">
+                        <span *ngFor="let tag of data.tags; let last = last;">#{{tag}}<ng-container *ngIf="!last">, </ng-container></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

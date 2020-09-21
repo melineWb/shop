@@ -2,8 +2,10 @@ import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angu
 
 import { ICartProductModel } from '../../../cart/models/icart-product-model';
 import { CartListComponent } from '../../../cart/cart-list-component/cart-list.component';
+import { ProductsService } from '../../../product/services/products.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { ConstantsService } from '../../../core/services/constants.service';
+import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -26,27 +28,18 @@ export class HeaderComponent implements OnInit{
   }];
 
   @ViewChild(CartListComponent)
-  private cartListComponent: CartListComponent;
 
-
-  @Output() updateProductListData = new EventEmitter<ICartProductModel[]>();
   @Output() showInfoMsg = new EventEmitter<string>();
   @Output() triggerLoginModal = new EventEmitter<boolean>();
 
   constructor(
     private localStorageService: LocalStorageService,
-    private constantsService: ConstantsService ) { }
+    private constantsService: ConstantsService,
+    private productsService: ProductsService,
+    private cartService: CartService ) { }
 
   ngOnInit(): void {
     this.appName = this.constantsService.app;
-  }
-
-  removeCartProducts(data: ICartProductModel[]): void {
-    this.updateProductListData.emit(data);
-  }
-
-  updateProductData(products: ICartProductModel[]): void {
-    this.updateProductListData.emit(products);
   }
 
   openLoginModal(): void {
