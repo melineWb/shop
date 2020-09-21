@@ -16,7 +16,13 @@ export class HeaderComponent implements OnInit{
   appName: string;
   menu = [{
     name: 'Shop',
-    link: '/',
+    link: 'product-list',
+  }, {
+    name: 'Cart',
+    link: 'cart',
+  }, {
+    name: 'Order',
+    link: 'order',
   }];
 
   @ViewChild(CartListComponent)
@@ -35,14 +41,8 @@ export class HeaderComponent implements OnInit{
     this.appName = this.constantsService.app;
   }
 
-  // used to inform CardList component that we need update data in cart
-  getDataFromCart(): void {
-    return this.cartListComponent.getCartData();
-  }
-
   removeCartProducts(data: ICartProductModel[]): void {
     this.updateProductListData.emit(data);
-    this.showInfoMsg.emit('All items in the cart was successfully removed');
   }
 
   updateProductData(products: ICartProductModel[]): void {

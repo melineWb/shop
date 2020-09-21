@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ProductsService } from '../services/products.service';
@@ -13,12 +13,11 @@ import { ICartProductModel } from 'src/app/cart/models/icart-product-model';
 export class ProductListComponent implements OnInit {
   products$: Observable<IProductModel[]>;
 
-  @Output() updateCart = new EventEmitter<number>();
-
   constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.products$ = this.productsService.getProducts();
+    this.cartService.data$.subscribe(res => this.updateProductData(res.cartProducts));
   }
 
   addToCart(data: IProductModel): void {
@@ -30,8 +29,6 @@ export class ProductListComponent implements OnInit {
       quantity: data.cartAddedQty,
       stockQty: data.stockQty
     });
-
-    this.updateCart.emit(data.cartAddedQty);
   }
 
   updateProductData(data: ICartProductModel[]): void {

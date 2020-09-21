@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class OrderByPipe implements PipeTransform {
 
   transform(data: any, key?: string, order: boolean = false): any {
-    console.log(order);
     if (key) {
       const sordedData =  data.sort((a: any, b: any): any => {
         if (typeof a[key] === 'string') {
