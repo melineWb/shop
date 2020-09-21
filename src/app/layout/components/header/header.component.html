@@ -4,7 +4,12 @@
         <ul class="header__menu">
             <ng-container *ngFor="let item of menu">
                 <li class="header__menu-link-wrapper">
-                    <a href="{{item.link}}" class="header__menu-link">{{item.name}}</a>
+                    <a 
+                        routerLink="{{item.link}}" 
+                        class="header__menu-link" 
+                        routerLinkActive="header__menu-link--active">
+                        {{item.name}}
+                    </a>
                 </li>
             </ng-container>
 

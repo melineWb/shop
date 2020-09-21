@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ICartProductModel } from '../models/icart-product-model';
+import { ICartResultModel } from '../models/icart-result-model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,22 @@ export class CartService {
   private cartProducts: ICartProductModel[] = [];
   private totalQuantity = 0;
   private totalSum = 0;
+  private cartResult: ICartResultModel;
+  private dataCartResult: any;
+  private msg: string;
+  data$: any;
 
-  constructor() { }
+  constructor() {
+    this.cartResult = {
+      cartProducts: this.cartProducts,
+      totalQuantity: this.totalQuantity,
+      totalSum: this.totalSum,
+      msg: this.msg,
+    };
+
+    this.dataCartResult = new BehaviorSubject(this.cartResult);
+    this.data$ = this.dataCartResult.asObservable();
+  }
 
   private isExistProduct(id: string): boolean {
     return this.cartProducts.some((product) => product.id === id);
@@ -33,6 +49,17 @@ export class CartService {
 
     this.totalSum = dataObj.sum.toFixed(2);
     this.totalQuantity = dataObj.quantity;
+    this.updateAppData();
+  }
+
+  updateAppData(): any {
+    const dataResult = {
+      cartProducts: this.cartProducts,
+      totalSum: this.totalSum,
+      totalQuantity: this.totalQuantity,
+      msg: this.msg
+    };
+    this.dataCartResult.next(dataResult);
   }
 
   addProduct(data: ICartProductModel): void {
@@ -40,9 +67,9 @@ export class CartService {
       this.increaseQty(data, data.quantity);
     } else {
       this.cartProducts.unshift(data);
+      this.msg = `${data.quantity} item(s) of ${data.name} added to cart`;
+      this.updateCartData();
     }
-
-    this.updateCartData();
   }
 
   increaseQty(data: ICartProductModel, qty: number = 1): void {
@@ -56,6 +83,8 @@ export class CartService {
     });
 
     this.cartProducts = cartProsucts;
+    this.msg = `${qty} item(s) of ${data.name} added to cart`;
+
     this.updateCartData();
   }
 
@@ -69,6 +98,7 @@ export class CartService {
 
       return productObj;
     });
+    this.msg = `Qty of ${data.name} product decreased`;
 
     this.cartProducts = cartProsucts;
     this.updateCartData();
@@ -81,26 +111,17 @@ export class CartService {
       }
     });
 
+    this.msg = `Product ${data.name} removed`;
+
     this.updateCartData();
   }
 
   removeAllProducts(): ICartProductModel[] {
     const removedProducts = this.cartProducts;
     this.cartProducts = [];
+
+    this.msg = `All items in the cart was successfully removed`;
     this.updateCartData();
-
     return removedProducts;
-  }
-
-  getProducts(): ICartProductModel[] {
-    return this.cartProducts;
-  }
-
-  getTotalSum(): number {
-    return this.totalSum;
-  }
-
-  getTotalQty(): number {
-    return this.totalQuantity;
   }
 }

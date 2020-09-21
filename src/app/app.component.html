@@ -6,14 +6,11 @@
 </app-header>
 
 <div class="main-container">
-  <div class="container">
-    <h1 class="text-center" #appTitle></h1>
-    <hr class="title-divider"/>
-    <app-product-list (updateCart)="updateCart($event)">
-    </app-product-list>
-
-    <app-about></app-about>
-  </div>
+  <router-outlet
+    #routerOutlet="outlet"
+    (activate)="onActivate($event, routerOutlet)"
+    (deactivate)="onDeactivate($event, routerOutlet)">
+  </router-outlet>
   
   <app-info-msg-box></app-info-msg-box>
 </div>

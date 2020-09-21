@@ -4,6 +4,7 @@ import { NgOption } from '@ng-select/ng-select';
 import { CartService } from '../services/cart.service';
 import { ICartProductModel } from '../models/icart-product-model';
 import { OrderByPipe } from '../../shared/pipes/order-by.pipe';
+import { ICartResultModel } from '../models/icart-result-model';
 
 @Component({
   selector: 'app-cart-list',
@@ -38,27 +39,27 @@ export class CartListComponent implements OnInit {
   constructor(private cartService: CartService, private orderByPipe: OrderByPipe) { }
 
   ngOnInit(): void {
-    this.getCartData();
+    this.cartService.data$.subscribe(res => this.getCartData(res));
   }
 
   // used In Header Component for update cart Qty
-  getCartData(): void {
-    this.getSortedProducts();
-    this.totalPrice = this.cartService.getTotalSum();
-    this.totalQty = this.cartService.getTotalQty();
+  getCartData(res: ICartResultModel): void {
+    this.getSortedProducts(res.cartProducts);
+    this.totalPrice = res.totalSum;
+    this.totalQty = res.totalQuantity;
   }
 
   reOrder(): void {
-    this.getSortedProducts();
+    this.getSortedProducts(this.products);
   }
 
-  getSortedProducts(): void {
-    this.products = this.orderByPipe.transform(this.cartService.getProducts(), this.selectedOrder, this.orderFlag);
+  getSortedProducts(products: ICartProductModel[]): void {
+    this.products = this.orderByPipe.transform(products, this.selectedOrder, this.orderFlag);
   }
 
   revertSortOrder(): void {
     this.orderFlag = !this.orderFlag;
-    this.getSortedProducts();
+    this.getSortedProducts(this.products);
   }
 
   removeCartItem(product: ICartProductModel): void {
@@ -67,7 +68,6 @@ export class CartListComponent implements OnInit {
 
     this.updateProductData.emit(productsData);
     this.cartService.removeProduct(product);
-    this.getCartData();
 
     if (!this.products.length) { this.isVisiblePopover = false; }
   }
@@ -78,7 +78,6 @@ export class CartListComponent implements OnInit {
 
     this.updateProductData.emit(productsData);
     this.cartService.decreaseQty(product);
-    this.getCartData();
   }
 
   increaseItemQty(product: ICartProductModel): void {
@@ -87,7 +86,6 @@ export class CartListComponent implements OnInit {
 
     this.updateProductData.emit(productsData);
     this.cartService.increaseQty(product);
-    this.getCartData();
   }
 
   removeAllItems(): void {
@@ -96,7 +94,6 @@ export class CartListComponent implements OnInit {
       return {...product, stockQty: product.stockQty + product.quantity};
     });
 
-    this.getCartData();
     this.isVisiblePopover = false;
     this.removeCartProducts.emit(removedProduts);
   }
