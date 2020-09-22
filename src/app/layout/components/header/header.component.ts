@@ -1,11 +1,8 @@
 import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 
-import { ICartProductModel } from '../../../cart/models/icart-product-model';
 import { CartListComponent } from '../../../cart/cart-list-component/cart-list.component';
-import { ProductsService } from '../../../product/services/products.service';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { ConstantsService } from '../../../core/services/constants.service';
-import { CartService } from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -22,9 +19,6 @@ export class HeaderComponent implements OnInit{
   }, {
     name: 'Cart',
     link: 'cart',
-  }, {
-    name: 'Order',
-    link: 'order',
   }];
 
   @ViewChild(CartListComponent)
@@ -34,9 +28,7 @@ export class HeaderComponent implements OnInit{
 
   constructor(
     private localStorageService: LocalStorageService,
-    private constantsService: ConstantsService,
-    private productsService: ProductsService,
-    private cartService: CartService ) { }
+    private constantsService: ConstantsService) { }
 
   ngOnInit(): void {
     this.appName = this.constantsService.app;

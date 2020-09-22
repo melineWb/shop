@@ -11,20 +11,20 @@
             </div>
             <form [formGroup]="loginForm" (submit)="onSubmit()">
                 <div class="modal__content">
-                    <label class="modal__form-item">
+                    <label class="app-field__wrapper">
                         Name or email
-                        <input type="text" id="name" formControlName="name" class="modal__field">
+                        <input type="text" id="name" formControlName="name" class="app-field app-field--text-center">
 
-                        <div class="modal__error" *ngIf="isControlInvalid('name')">
+                        <div class="app-field__error" *ngIf="isControlInvalid('name')">
                             Field is required
                         </div>
                     </label>
 
-                    <label class="modal__form-item">
+                    <label class="app-field__wrapper">
                         Password
-                        <input type="password" id="email" formControlName="password" class="modal__field">
+                        <input type="password" id="email" formControlName="password" class="app-field app-field--text-center">
 
-                        <div class="modal__error" *ngIf="isControlInvalid('password')">
+                        <div class="app-field__error" *ngIf="isControlInvalid('password')">
                             Min password length 6
                         </div>
                     </label>

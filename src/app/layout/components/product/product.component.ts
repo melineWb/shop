@@ -78,8 +78,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   updateProductData(data: ICartProductModel[]): void {
-    data && data.forEach((item): void => {
-      if (this.id === item.id) {
+    data.forEach((item): void => {
+      if (item && this.id === item.id) {
         this.data.stockQty = item.stockQty;
       }
     });

@@ -1,0 +1,103 @@
+@import '../../../shared/styles/_variables.less';
+@import '../../../shared/styles/form.less';
+@import '../../../shared/styles/mixins/box-shadow.less';
+
+.order-page {
+    &__table {
+        max-width: 1280px;
+        margin: 20px auto;
+        .box-shadow(0 4px 5px 0px);
+        background: #fff;
+    }
+
+    &__action-wrap {
+        margin: 20px 0;
+    }
+
+    &__shop-action {
+        margin: 0 auto;
+        display: block;
+        padding: 13px 40px;
+        border-radius: 30px;
+        background: transparent;
+        color: @mainDark;
+        border: @mainDark solid 2px;
+        box-shadow: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 600;
+
+        &:hover {
+            background-color: darken(@mainDark, 7%);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        &:focus {
+            outline: none;
+            color: #fff;
+            background-color: darken(@mainDark, 14%);
+        }
+
+        &:disabled {
+            border-color: @gray1;
+            color: #fff;
+            background-color: @gray1;
+            pointer-events: none;
+        }
+    }
+
+    &__remove-wrap {
+        padding: 20px 20px 10px;
+    }
+
+    &__bottom {
+        border-top: 1px solid @gray0;
+        padding: 20px;
+    }
+
+    &__bottom-label {
+        flex: 100px 0 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    &__bottom-data {
+        flex: 1 1 auto;
+        justify-content: space-between;
+    }
+
+    &__total {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    &__form-part {
+        padding: 20px;
+
+        & + & {
+            border-top: 1px solid @gray0;
+        }
+    }
+
+    &__form {
+        max-width: 1280px;
+        margin: 20px auto;
+        .box-shadow(0 4px 5px 0px);
+        background: #fff;
+        margin-bottom: 20px;
+    }
+
+    &__form-title {
+        margin: 10px 0 20px;
+    }
+}
+
+.d-flex__item {
+    flex: 1 1 auto;
+}
+
+.app-field__select {
+    width: 100%;
+    margin-top: 20px;
+}

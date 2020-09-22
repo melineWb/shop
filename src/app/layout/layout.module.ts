@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
 
@@ -20,6 +21,7 @@ import { ProfileModule } from '../profile/profile.module';
   ],
   imports: [
     SharedModule,
+    ReactiveFormsModule,
     ProductModule,
     CartModule,
     ProfileModule,

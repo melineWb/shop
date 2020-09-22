@@ -1,7 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { ICartProductModel } from '../../../cart/models/icart-product-model';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

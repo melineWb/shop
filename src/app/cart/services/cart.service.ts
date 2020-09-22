@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { ICartProductModel } from '../models/icart-product-model';
 import { ICartResultModel } from '../models/icart-result-model';
@@ -124,12 +124,16 @@ export class CartService {
     this.updateCartData();
   }
 
-  removeAllProducts(): void {
+  removeAllProducts(hideMsg?: boolean): void {
     this.removedProducts = this.cartProducts.map((product: ICartProductModel): ICartProductModel => {
       return {...product, stockQty: product.stockQty + product.quantity};
     });
     this.cartProducts = [];
-    this.msg = `All items in the cart was successfully removed`;
+    this.msg = hideMsg ? '' : `All items in the cart was successfully removed`;
     this.updateCartData();
+  }
+
+  getProductsCount(): number {
+    return this.cartProducts.length;
   }
 }

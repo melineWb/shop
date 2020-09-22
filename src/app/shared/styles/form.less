@@ -1,0 +1,42 @@
+@import './_variables.less';
+
+.app-field {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 7px;
+    box-shadow: none;
+    border: 1px solid @gray3;
+
+    &--text-center {
+        text-align: center;
+    }
+
+    &:hover, &:focus {
+        border-color: @mainDark;
+        outline: none;
+    }
+
+    &__wrapper {
+        display: block;
+        margin-bottom: 20px;
+        text-align: center;
+
+    }
+
+    &__wrap-horizontall {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        .app-field {
+            width: 75%;
+        }
+    }
+
+    &__error {
+        color: @red;
+        margin: 10px 0;
+    }
+}
