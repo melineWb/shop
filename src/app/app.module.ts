@@ -9,6 +9,7 @@ import { ProfileModule } from './profile/profile.module';
 import { LayoutModule } from './layout/layout.module';
 
 import { AppComponent } from './app.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AppComponent } from './app.component';
     SharedModule,
     ProfileModule,
     LayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AdminModule
   ],
   bootstrap: [AppComponent],
 })
