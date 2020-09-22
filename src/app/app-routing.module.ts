@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent, CartComponent, OrderComponent, PathNotFoundComponent, ProductComponent } from './layout';
+import { OrderGuard } from './order.guard';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'product:id',
+    path: 'product/:id',
     component: ProductComponent
   },
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'order',
-    component: OrderComponent
+    component: OrderComponent,
+    canActivate: [OrderGuard]
   },
   {
     path: '',

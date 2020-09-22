@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ProductsService } from '../services/products.service';
 import { CartService } from '../../cart/services/cart.service';
 import { IProductModel } from '../models/iproduct-model';
-import { ICartProductModel } from 'src/app/cart/models/icart-product-model';
+import { ICartProductModel } from '../../cart/models/icart-product-model';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.productsService.getProducts();
-    this.cartService.data$.subscribe(res => this.updateProductData(res.cartProducts));
+    this.cartService.data$.subscribe(res => this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts));
   }
 
   addToCart(data: IProductModel): void {

@@ -1,5 +1,77 @@
 <div class="container">
     <h1 class="text-center">Cart</h1>
     <hr class="title-divider"/>
+    <div class="cart-page">
+        <div class="cart-page__table" [ngClass]="{white: totalQty > 0}">
+            <div class="cart-page__table-content" [ngClass]="{hidden: totalQty === 0}">
+                <div *ngIf="totalQty > 0" class="cart-page__remove-wrap">
+                    <div *ngIf="totalQty > 0" class="cart-page__sorted-box">
+                        <ng-select 
+                            [items]="orderItems"
+                            class="cart-page__select"
+                            bindLabel="name"
+                            bindValue="id"
+                            (change)="reOrder()"
+                            [searchable]=false
+                            [clearable]=false
+                            [(ngModel)]="selectedOrder">
+                        </ng-select>
+            
+                        <div class="cart-page__sort-box">
+                            <button class="cart-page__sort-btn" [ngClass]="{selected: !orderFlag}" (click)="revertSortOrder()">
+                                <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                            </button>
+                            <button class="cart-page__sort-btn" [ngClass]="{selected: orderFlag}" (click)="revertSortOrder()">
+                                <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="cart-page__remove" (click)="removeAllItems()">Remove all</button>
+                </div>
+                
+                <div *ngFor="let product of products">
+                    <app-cart-row 
+                        [editable]="true"
+                        [product]="product"
+                        (removeCartItem)="removeCartItem($event)"
+                        (decreaseItemQty)="decreaseItemQty($event)"
+                        (increaseItemQty)="increaseItemQty($event)"
+                        >
+                    </app-cart-row>
+                </div>
+            </div>
+    
+            <div *ngIf="products.length; then productCardContainer; else emptyCard"></div>
+            <ng-template #emptyCard>
+                <p class="cart-page__empty-text text-center">Your cart is empty</p>
+                <div class="cart-page__action-wrap">
+                    <button class="cart-page__shop-action" (click)="navigateToShop()">Go Shopping</button>
+                </div>
+            </ng-template>
+    
+            <ng-template #productCardContainer>
+                <div class="d-flex cart-page__bottom">
+                    <div class="cart-page__bottom-label">
+                        <span>Total</span>
+                    </div>
+                    <div class="d-flex cart-page__bottom-data">
+                        <div>
+                            <span>Sum: </span>
+                            <span class="cart-page__total">{{totalPrice | currency:"USD":"symbol"}}</span>
+                        </div>
+
+                        <div>
+                            <span>Quantity: </span>
+                            <span class="cart-page__total">{{totalQty}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+        <div class="cart-page__action-wrap" *ngIf="products.length">
+            <button class="cart-page__shop-action" (click)="navigateToOrder()">Place order</button>
+        </div>
+    </div>
 
 </div>

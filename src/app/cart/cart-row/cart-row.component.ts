@@ -3,14 +3,14 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChan
 import { ICartProductModel } from '../models/icart-product-model';
 
 @Component({
-  selector: 'app-cart-item',
-  templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.less'],
+  selector: 'app-cart-row',
+  templateUrl: './cart-row.component.html',
+  styleUrls: ['./cart-row.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class CartItemComponent implements OnChanges {
+export class CartRowComponent implements OnChanges {
   @Input() product: ICartProductModel;
+  @Input() editable: boolean;
   disableMaxQtyErr = false;
   maxProductQty: number;
 
@@ -61,4 +61,5 @@ export class CartItemComponent implements OnChanges {
       stockQty: this.product.stockQty - 1
     });
   }
+
 }

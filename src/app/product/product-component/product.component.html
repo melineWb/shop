@@ -9,7 +9,9 @@
         <img class="card__img" [src]=data.imgSrc alt="">
     </div>
     <div class="card-description">
-        <h2 class="card__title">{{data.name}}</h2>
+        <div class="card__title">
+            <a [routerLink]="['/product', data.id]" class="card__title-link">{{data.name}}</a>
+        </div>
         <div class="card__description" *ngIf="data.description">
             <p>{{data.description}}</p>
         </div>

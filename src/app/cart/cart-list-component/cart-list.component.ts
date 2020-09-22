@@ -33,9 +33,6 @@ export class CartListComponent implements OnInit {
     }
   ];
 
-  @Output() updateProductData = new EventEmitter<ICartProductModel[]>();
-  @Output() removeCartProducts = new EventEmitter<ICartProductModel[]>();
-
   constructor(private cartService: CartService, private orderByPipe: OrderByPipe) { }
 
   ngOnInit(): void {
@@ -66,7 +63,6 @@ export class CartListComponent implements OnInit {
     const productsData = [];
     productsData.push({...product, stockQty: product.stockQty + product.quantity});
 
-    this.updateProductData.emit(productsData);
     this.cartService.removeProduct(product);
 
     if (!this.products.length) { this.isVisiblePopover = false; }
@@ -76,7 +72,6 @@ export class CartListComponent implements OnInit {
     const productsData: ICartProductModel[] = [];
     productsData.push(product);
 
-    this.updateProductData.emit(productsData);
     this.cartService.decreaseQty(product);
   }
 
@@ -84,18 +79,12 @@ export class CartListComponent implements OnInit {
     const productsData: ICartProductModel[] = [];
     productsData.push(product);
 
-    this.updateProductData.emit(productsData);
     this.cartService.increaseQty(product);
   }
 
   removeAllItems(): void {
-    let removedProduts = this.cartService.removeAllProducts();
-    removedProduts =  removedProduts.map((product: ICartProductModel): ICartProductModel => {
-      return {...product, stockQty: product.stockQty + product.quantity};
-    });
-
+    this.cartService.removeAllProducts();
     this.isVisiblePopover = false;
-    this.removeCartProducts.emit(removedProduts);
   }
 
   toglePopover(): void {

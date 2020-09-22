@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ICartProductModel } from './cart/models/icart-product-model';
 import { InfoMsgBoxComponent } from './shared/components/info-msg-box/info-msg-box.component';
 import { ModalLoginComponent } from './profile/components/modal-login/modal-login.component';
 import { LocalStorageService } from './core/services/local-storage.service';
@@ -36,10 +35,6 @@ export class AppComponent implements OnInit{
     this.infoMsgBoxComponent.showMsg(msg);
   }
 
-  updateProductListData(products: ICartProductModel[]): void {
-    this.outlet.component.onUpdateProductData(products);
-  }
-
   triggerLoginModal(flag: boolean): void {
     this.modalLoginComponent.togleModal(flag);
   }
@@ -49,7 +44,6 @@ export class AppComponent implements OnInit{
   }
 
   updateCartQty(msg: string): void {
-    // const cartQtyItems = this.headerComponent.getDataFromCart();
     if (msg) {
       this.infoMsgBoxComponent.showMsg(msg);
     }

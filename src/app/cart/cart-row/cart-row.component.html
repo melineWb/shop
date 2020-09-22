@@ -1,0 +1,28 @@
+<div class="cart-row" [appHighlight]="'#f2f2f2'">
+    <div class="cart-row__img">
+        <img src="{{product.imgSrc}}" alt="">
+        <button *ngIf="editable" class="cart-row__remove" (click)="removeItem()">Remove</button>
+    </div>
+    <div class="cart-row__desc">
+        <a class="cart-row__product-name" [routerLink]="['/product', product.id]">{{product.name}}</a>
+        <div class="d-flex">
+            <div>
+                <span class="items">{{product.price | currency:"USD":"symbol"}}</span>
+            </div>
+
+            <span class="items">
+                <ng-container *ngIf="editable; then editableQty; else notEditableQty;"></ng-container>
+                <ng-template #editableQty>
+                    <div class="cart-row__qty-box">
+                        <button (click)='decreaseQty()' class="cart-row__change-qty">-</button>
+                        <span class="cart-row__qty">{{product.quantity}}</span>
+                        <button (click)='increaseQty()' class="cart-row__change-qty">+</button>
+                    </div>
+                </ng-template>
+                <ng-template #notEditableQty><span class="cart-row__qty">{{product.quantity}}</span></ng-template>
+            </span>
+        </div>
+
+        <span *ngIf="disableMaxQtyErr" class="cart-row__err-msg">Max stock Quantity is {{maxProductQty}}</span>
+    </div>
+</div>
