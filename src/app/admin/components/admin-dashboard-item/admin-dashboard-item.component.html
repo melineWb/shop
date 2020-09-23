@@ -1,0 +1,13 @@
+<div class="d-flex admin-dashboard-item">
+    <div class="admin-dashboard-item__photo-wrap" *ngIf="data.imgSrc">
+        <img class="admin-dashboard-item__img" [src]=data.imgSrc alt="">
+    </div>
+    <div class="admin-dashboard-item__title">
+        {{data.name}},
+        ({{data.price | currency:"USD":"symbol"}})
+    </div>
+
+    <div class="admin-dashboard-item__edit-wrap">
+        <button [routerLink]="['product/edit', data.id]" class="admin-dashboard-item__edit">Edit</button>
+    </div>
+</div>

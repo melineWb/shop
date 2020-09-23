@@ -1,0 +1,16 @@
+<h1 class="text-center">Admin Orders</h1>
+<hr class="title-divider"/>
+
+<div class="d-flex admin-orders__wrap admin-orders__wrap--top">
+    <button class="admin-orders__back" (click)="goBack()">< Back</button>
+</div>
+
+<div class="admin-orders">
+    <div class="admin-orders__wrap admin-orders__wrap--white">
+        <ng-container *ngFor="let order of orders">
+            <app-admin-dashboard-item 
+                [data]="order">
+            </app-admin-dashboard-item>
+        </ng-container>
+    </div>
+</div> 

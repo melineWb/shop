@@ -1,6 +1,5 @@
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { CartService } from './cart/services/cart.service';
 
@@ -11,15 +10,11 @@ import { CartService } from './cart/services/cart.service';
 export class OrderGuard implements CanActivate{
     constructor(private cartService: CartService, private router: Router) { }
 
-    private canActiveOrdersRoute(): any {
-        if (this.cartService.getProductsCount()) {
-            return true;
-        } else {
-            this.router.navigateByUrl('product-list');
-        }
+    private canActiveOrdersRoute(): boolean | UrlTree {
+        return this.cartService.getProductsCount() ? true : this.router.parseUrl('cart');
     }
 
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    canActivate(): boolean | UrlTree {
         return this.canActiveOrdersRoute();
     }
 }

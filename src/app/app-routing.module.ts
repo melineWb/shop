@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent, CartComponent, OrderComponent, PathNotFoundComponent, ProductComponent } from './layout';
 import { OrderGuard } from './order.guard';
+import { AdminGuard } from './admin/admin.guard';
+import { AdminComponent } from './admin/components/admin.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,12 @@ const routes: Routes = [
     path: '',
     redirectTo: 'product-list',
     pathMatch: 'full'
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canLoad: [AdminGuard],
   },
   {
     path: '**',

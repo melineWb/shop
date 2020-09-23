@@ -1,0 +1,50 @@
+@import '../../../shared/styles/mixins/box-shadow.less';
+@import '../../../shared/styles/_variables.less';
+
+.admin-dashboard {
+    &__item-wrap {
+        flex: 50% 0 0;
+        padding: 0 10px 10px;
+    }
+
+    &__item {
+        background: #fff;
+        .box-shadow(0 4px 5px 0px);
+        padding: 30px;
+    }
+
+    &__list {
+        margin-top: 20px;
+        border-top: 1px solid @gray0;
+    }
+
+    &__view-all {
+        margin: 0 auto;
+        display: block;
+        padding: 13px 40px;
+        border-radius: 30px;
+        background: transparent;
+        color: @mainDark;
+        border: @mainDark solid 2px;
+        box-shadow: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 600;
+
+        &:hover {
+            background-color: darken(@mainDark, 7%);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        &:focus {
+            outline: none;
+            color: #fff;
+            background-color: darken(@mainDark, 14%);
+        }
+    }
+
+    &__buttom {
+        padding-top: 30px;
+    }
+}
