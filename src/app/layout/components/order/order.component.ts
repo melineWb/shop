@@ -119,7 +119,7 @@ export class OrderComponent implements OnInit {
 
   isControlInvalid(controlName: string): boolean {
     const control = this.orderForm.controls[controlName];
-    const result = control.invalid && control.touched;
+    const result: boolean = control.invalid && control.touched;
 
     return result;
   }

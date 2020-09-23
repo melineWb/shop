@@ -60,25 +60,16 @@ export class CartListComponent implements OnInit {
   }
 
   removeCartItem(product: ICartProductModel): void {
-    const productsData = [];
-    productsData.push({...product, stockQty: product.stockQty + product.quantity});
-
     this.cartService.removeProduct(product);
 
     if (!this.products.length) { this.isVisiblePopover = false; }
   }
 
   decreaseItemQty(product: ICartProductModel): void {
-    const productsData: ICartProductModel[] = [];
-    productsData.push(product);
-
     this.cartService.decreaseQty(product);
   }
 
   increaseItemQty(product: ICartProductModel): void {
-    const productsData: ICartProductModel[] = [];
-    productsData.push(product);
-
     this.cartService.increaseQty(product);
   }
 

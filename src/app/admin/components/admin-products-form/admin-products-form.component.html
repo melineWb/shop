@@ -1,0 +1,28 @@
+<form [formGroup]="productForm" (submit)="onSubmit()" class="product-form">
+    <div class="d-flex">
+        <div class="product-form__box">
+            <label class="app-field__wrapper">
+                <div class="app-field__wrap-horizontall">
+                    <p>Name</p>
+                    <input type="text" id="name" formControlName="name" class="app-field">
+                </div>
+            </label>
+
+            <label class="app-field__wrapper">
+                <div class="app-field__wrap-horizontall">
+                    <p>ImgSrc</p>
+                    <input type="text" id="imgSrc" formControlName="imgSrc" class="app-field">
+                </div>
+            </label>
+
+            <label class="app-field__wrapper">
+                <div class="app-field__wrap-horizontall">
+                    <p>Price</p>
+                    <input type="number" id="price" formControlName="price" class="app-field">
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <button class="product-form__action" type="submit">Submit</button>
+</form>

@@ -1,13 +1,10 @@
 import {
     CanActivate,
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot,
     Router,
     CanActivateChild,
     CanLoad,
-    UrlSegment } from '@angular/router';
+    UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { LocalStorageService } from '../core/services/local-storage.service';
 
@@ -18,26 +15,19 @@ import { LocalStorageService } from '../core/services/local-storage.service';
 export class AdminGuard implements CanActivate, CanActivateChild, CanLoad {
     constructor(private localStorageService: LocalStorageService, private router: Router) { }
 
-    private canActiveAdminsRoute(): any {
-        if (this.localStorageService.getItem('name') === 'admin') {
-            return true;
-        } else {
-            this.router.navigateByUrl('404');
-            return false;
-        }
+    private canActiveAdminsRoute(): boolean | UrlTree {
+        return this.localStorageService.getItem('username') === 'admin' ? true : this.router.parseUrl('404');
     }
 
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    canActivate(): boolean | UrlTree {
         return this.canActiveAdminsRoute();
     }
 
-    canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    canActivateChild(): boolean | UrlTree {
         return this.canActiveAdminsRoute();
     }
 
-    canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-        console.log('CanLoad Guard is called');
-        const url = `/${route.path}`;
+    canLoad(): boolean | UrlTree  {
         return this.canActiveAdminsRoute();
     }
 }
