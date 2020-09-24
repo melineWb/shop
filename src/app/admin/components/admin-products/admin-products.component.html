@@ -8,7 +8,7 @@
 
 <div class="admin-products">
     <div class="admin-products__wrap admin-products__wrap--white">
-        <ng-container *ngFor="let product of products$ | async">
+        <ng-container *ngFor="let product of products">
             <app-admin-dashboard-item 
                 [data]="product"
                 (editItem)="onEdit($event)">

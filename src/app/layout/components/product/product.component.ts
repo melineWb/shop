@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
 import { ProductsService } from '../../../product/services/products.service';
@@ -15,7 +14,7 @@ import { ICartProductModel } from '../../../cart/models/icart-product-model';
 export class ProductComponent implements OnInit, OnDestroy {
   private sub: any;
   id: string;
-  products$: Observable<IProductModel[]>;
+  products: IProductModel[];
   data: IProductModel;
   cartAddedQty = 1;
 
@@ -25,15 +24,16 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
        this.id = params.id;
 
-       this.products$ = this.productsService.getProducts();
-       this.products$.subscribe(products => {
-          products.forEach((item): void => {
+       this.productsService.prouscts$.subscribe(data => {
+         this.products = data;
+
+         this.products.forEach((item): void => {
             if (this.id === item.id) {
               this.data = item;
               this.data.cartAddedQty = this.cartAddedQty;
             }
           });
-      });
+        });
     });
 
     this.cartService.data$.subscribe(res => this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts));

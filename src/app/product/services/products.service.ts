@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { IProductModel } from '../models/iproduct-model';
 
@@ -10,13 +9,21 @@ import { IProductModel } from '../models/iproduct-model';
   providedIn: 'root'
 })
 export class ProductsService {
-
+  private products: IProductModel[] = [];
   private dataJson = '/assets/data.json';
+  private dataProducts: any;
+  prouscts$: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.dataProducts = new BehaviorSubject(this.products);
+    this.prouscts$ = this.dataProducts.asObservable();
 
-  getProducts(): Observable<IProductModel[]> {
-    return this.http.get<IProductModel[]>(this.dataJson);
+    this.http.get<IProductModel[]>(this.dataJson)
+      .subscribe((data: IProductModel[]) => {
+        this.products = data;
+
+        this.dataProducts.next(data)
+      });
   }
 
   updateProductListData(): void {

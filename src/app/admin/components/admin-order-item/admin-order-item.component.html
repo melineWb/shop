@@ -1,13 +1,13 @@
-<div class="d-flex admin-dashboard-item">
-    <div>
-        <div class="admin-dashboard-item__title">
+<div class="d-flex admin-order-item">
+    <div class="admin-order-item__col">
+        <div class="admin-order-item__title">
             <span>Order #{{data.id}}</span>
             <div><span>{{data.username}}</span></div>
         </div>
 
-        <div class="admin-dashboard-item__totals">
+        <div class="admin-order-item__totals">
             <div *ngIf="data.closed">
-                <span class="admin-dashboard-item__green">Closed</span>
+                <span class="admin-order-item__green">Closed</span>
             </div>
 
             <div>
@@ -16,8 +16,8 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="admin-dashboard-item__title">
+    <div class="admin-order-item__col">
+        <div class="admin-order-item__title">
             <span>Payment</span>
         </div>
         <div>
@@ -25,11 +25,11 @@
             <span class="order-page__total">{{data.paymentType}}</span>
         </div>
         <div *ngIf="data.paymentComplete">
-            <span class="admin-dashboard-item__green">Payment Complete</span>
+            <span class="admin-order-item__green">Payment Complete</span>
         </div>
     </div>
-    <div>
-        <div class="admin-dashboard-item__title">
+    <div class="admin-order-item__col">
+        <div class="admin-order-item__title">
             <span>Address</span>
         </div>
         <div>

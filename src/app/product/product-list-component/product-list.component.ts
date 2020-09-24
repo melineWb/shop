@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { ProductsService } from '../services/products.service';
 import { CartService } from '../../cart/services/cart.service';
@@ -11,12 +10,12 @@ import { ICartProductModel } from '../../cart/models/icart-product-model';
   templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
-  products$: Observable<IProductModel[]>;
+  products: IProductModel[];
 
   constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.products$ = this.productsService.getProducts();
+    this.productsService.prouscts$.subscribe(data => this.products = data);
     this.cartService.data$.subscribe(res => this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts));
   }
 
@@ -32,22 +31,17 @@ export class ProductListComponent implements OnInit {
   }
 
   updateProductData(data: ICartProductModel[]): void {
-    this.products$.subscribe(products => {
-      const cartProducts = products.map((product: IProductModel) => {
-        const productObj = {...product};
+    // const cartProducts = this.products.map((product: IProductModel) => {
+    //   const productObj = {...product};
 
-        data.forEach((item): void => {
-          if (productObj.id === item.id) {
-            productObj.stockQty = item.stockQty;
-          }
-        });
-        return productObj;
-      });
+    //   data.forEach((item): void => {
+    //     if (productObj.id === item.id) {
+    //       productObj.stockQty = item.stockQty;
+    //     }
+    //   });
+    //   return productObj;
+    // });
 
-      this.products$ = new Observable((observer) => {
-          observer.next(cartProducts);
-          observer.complete();
-      });
-    });
+    // this.products = cartProducts;
   }
 }

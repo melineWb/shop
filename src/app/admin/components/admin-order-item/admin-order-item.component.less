@@ -1,10 +1,12 @@
 @import '../../../shared/styles/_variables.less';
 
-.admin-dashboard-item {
-    justify-content: space-between;
-    align-items: center;
+.admin-order-item {
     border-bottom: 1px solid @gray0;
     padding: 10px 0;
+
+    &__col {
+        flex: 1 1 33.333%;
+    }
 
     &__totals {
         margin-top: 15px;

@@ -11,12 +11,12 @@ import { ProductsService } from '../../../product/services/products.service';
   styleUrls: ['./admin-products.component.less']
 })
 export class AdminProductsComponent implements OnInit {
-  products$: Observable<IProductModel[]>;
+  products: IProductModel[];
 
   constructor(private location: Location, private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.products$ = this.productsService.getProducts();
+    this.productsService.prouscts$.subscribe(data => this.products = data);
   }
 
   updateProductData(data: IProductModel): void {
