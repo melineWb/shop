@@ -16,7 +16,7 @@ export class AdminProductsComponent implements OnInit {
   constructor(private location: Location, private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsService.prouscts$.subscribe(data => this.products = data);
+    this.productsService.products$.subscribe(data => this.products = data);
   }
 
   updateProductData(data: IProductModel): void {

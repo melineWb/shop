@@ -15,33 +15,34 @@ export class ProductListComponent implements OnInit {
   constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.productsService.prouscts$.subscribe(data => this.products = data);
+    this.productsService.products$.subscribe(data => this.products = data);
     this.cartService.data$.subscribe(res => this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts));
   }
 
-  addToCart(data: IProductModel): void {
+  addToCart(data: IProductModel, cartAddedQty: number): void {
     this.cartService.addProduct({
       id: data.id,
       name: data.name,
       imgSrc: data.imgSrc,
       price: data.price,
       quantity: data.cartAddedQty,
-      stockQty: data.stockQty
+      stockQty: data.stockQty,
     });
+
+    this.productsService.updateProduct(data);
   }
 
   updateProductData(data: ICartProductModel[]): void {
-    // const cartProducts = this.products.map((product: IProductModel) => {
-    //   const productObj = {...product};
+    this.products.map((product: IProductModel) => {
+      const productObj = {...product};
 
-    //   data.forEach((item): void => {
-    //     if (productObj.id === item.id) {
-    //       productObj.stockQty = item.stockQty;
-    //     }
-    //   });
-    //   return productObj;
-    // });
+      data.forEach((item): void => {
+        if (productObj.id === item.id) {
+          productObj.stockQty = item.stockQty;
+        }
+      });
 
-    // this.products = cartProducts;
+      this.productsService.updateProduct(productObj);
+    });
   }
 }

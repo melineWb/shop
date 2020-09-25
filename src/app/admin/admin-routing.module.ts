@@ -6,6 +6,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { AdminAddProductsComponent } from './components/admin-add-products/admin-add-products.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
+import { AdminProductItemResolver } from './admin-product-item.resolver';
 
 const adminRoutes: Routes = [
   {
@@ -13,11 +15,27 @@ const adminRoutes: Routes = [
     canActivate: [AdminGuard],
     canActivateChild: [AdminGuard],
     children: [
-      { path: 'products', component: AdminProductsComponent },
-      { path: 'products/add', component: AdminAddProductsComponent },
-      { path: 'product/edit/:id', component: AdminDashboardComponent },
-      { path: 'orders', component: AdminOrdersComponent },
-      { path: '', component: AdminDashboardComponent }
+      { 
+        path: 'products', 
+        component: AdminProductsComponent 
+      },
+      { 
+        path: 'product/add', 
+        component: AdminAddProductsComponent 
+      },
+      { 
+        path: 'product/edit/:id', 
+        component: AdminEditProductComponent, 
+        resolve: {data: AdminProductItemResolver} 
+      },
+      { 
+        path: 'orders', 
+        component: AdminOrdersComponent 
+      },
+      { 
+        path: '', 
+        component: AdminDashboardComponent 
+      }
     ]
   },
 ];

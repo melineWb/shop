@@ -13,7 +13,7 @@ export class OrderService {
 
   placeOrder(order: IOrderModel): void {
     order.id = this.orders.length;
-    this.orders.push(order);
+    this.orders.unshift(order);
   }
 
   getOrders(): IOrderModel[] {
