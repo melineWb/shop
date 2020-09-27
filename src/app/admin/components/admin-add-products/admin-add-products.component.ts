@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
 import { ProductsService } from '../../../product//services/products.service';
@@ -20,7 +20,7 @@ export class AdminAddProductsComponent implements OnInit {
   newData: IProductModel;
 
   constructor(
-    private location: Location,
+    private router: Router,
     private productsService: ProductsService,
     @Optional() @Inject(GeneratorDataService) private generatorDataService: string) { }
 
@@ -36,7 +36,7 @@ export class AdminAddProductsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigateByUrl('/admin/products');
   }
 
   onSaveProduct(product: IProductModel): void {

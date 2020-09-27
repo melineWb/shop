@@ -39,7 +39,6 @@ export class CartListComponent implements OnInit {
     this.cartService.data$.subscribe(res => this.getCartData(res));
   }
 
-  // used In Header Component for update cart Qty
   getCartData(res: ICartResultModel): void {
     this.getSortedProducts(res.cartProducts);
     this.totalPrice = res.totalSum;

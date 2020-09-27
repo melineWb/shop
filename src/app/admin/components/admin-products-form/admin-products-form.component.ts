@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { NgOption } from '@ng-select/ng-select';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
@@ -33,7 +33,7 @@ export class AdminProductsFormComponent implements OnInit {
     }
   ];
 
-  constructor(private location: Location, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.category = this.data.category;
@@ -52,7 +52,7 @@ export class AdminProductsFormComponent implements OnInit {
   }
 
   goBack(): void{
-    this.location.back();
+    this.router.navigateByUrl('/admin/products');
   }
 
   onSubmit(): void {

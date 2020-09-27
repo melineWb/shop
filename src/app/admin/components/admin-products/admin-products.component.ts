@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
 import { ProductsService } from '../../../product/services/products.service';
@@ -13,18 +12,13 @@ import { ProductsService } from '../../../product/services/products.service';
 export class AdminProductsComponent implements OnInit {
   products: IProductModel[];
 
-  constructor(private location: Location, private productsService: ProductsService) { }
+  constructor(private router: Router, private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.productsService.products$.subscribe(data => this.products = data);
   }
 
-  updateProductData(data: IProductModel): void {
-
-  }
-
-
   goBack(): void{
-    this.location.back();
+    this.router.navigateByUrl('/admin');
   }
 }

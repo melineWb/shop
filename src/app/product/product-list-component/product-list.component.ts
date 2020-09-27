@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from '../services/products.service';
 import { CartService } from '../../cart/services/cart.service';
@@ -11,12 +12,29 @@ import { ICartProductModel } from '../../cart/models/icart-product-model';
 })
 export class ProductListComponent implements OnInit {
   products: IProductModel[];
+  private initedCartData = false;
 
-  constructor(private productsService: ProductsService, private cartService: CartService) { }
+  constructor( private productsService: ProductsService, private cartService: CartService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.productsService.products$.subscribe(data => this.products = data);
-    this.cartService.data$.subscribe(res => this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts));
+    this.productsService.products$.subscribe(data => {
+      this.products = data;
+      if (this.checkCartProducts()) {
+        this.initedCartData = true;
+        this.updateProductData(this.cartService.getProductsArray());
+      }
+    });
+    
+    this.cartService.data$.subscribe(res => {
+      if (this.checkCartProducts()) {
+        this.initedCartData = true;
+      }
+      this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts);
+    });
+  }
+
+  private checkCartProducts(): boolean {
+    return this.products.length && !this.initedCartData;
   }
 
   addToCart(data: IProductModel, cartAddedQty: number): void {

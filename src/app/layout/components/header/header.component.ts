@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   appName: string;
   menu = [{
     name: 'Shop',
-    link: 'product-list',
+    link: 'products-list',
   }, {
     name: 'Cart',
     link: 'cart',

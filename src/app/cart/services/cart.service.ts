@@ -3,13 +3,14 @@ import { BehaviorSubject } from 'rxjs';
 
 import { ICartProductModel } from '../models/icart-product-model';
 import { ICartResultModel } from '../models/icart-result-model';
+import { LocalStorageService } from '../../core/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CartService {
-  private cartProducts: ICartProductModel[] = [];
+  private cartProducts: ICartProductModel[];
   private totalQuantity = 0;
   private totalSum = 0;
   private cartResult: ICartResultModel;
@@ -18,7 +19,11 @@ export class CartService {
   private removedProducts: ICartProductModel[] = [];
   data$: any;
 
-  constructor() {
+  constructor(
+    private localStorageService: LocalStorageService
+  ) {
+    this.cartProducts = this.localStorageService.getItem('cartProducts') || [];
+
     this.cartResult = {
       cartProducts: this.cartProducts,
       removedProducts: this.removedProducts,
@@ -29,13 +34,17 @@ export class CartService {
 
     this.dataCartResult = new BehaviorSubject(this.cartResult);
     this.data$ = this.dataCartResult.asObservable();
+
+    if (this.cartProducts.length) {
+      this.updateCartData();
+    }
   }
 
   private isExistProduct(id: string): boolean {
     return this.cartProducts.some((product) => product.id === id);
   }
 
-  private updateCartData(): any {
+  private cartCounter(): any {
     const dataObj = this.cartProducts.reduce((data: any, product: ICartProductModel) => {
       const sum = data.sum + product.price * product.quantity;
       const quantity = data.quantity + product.quantity;
@@ -51,6 +60,10 @@ export class CartService {
 
     this.totalSum = dataObj.sum.toFixed(2);
     this.totalQuantity = dataObj.quantity;
+  }
+
+  private updateCartData(): any {
+    this.cartCounter();
     this.updateAppData();
   }
 
@@ -62,6 +75,8 @@ export class CartService {
       totalQuantity: this.totalQuantity,
       msg: this.msg
     };
+
+    this.localStorageService.setItem('cartProducts', this.cartProducts);
     this.dataCartResult.next(dataResult);
   }
 
@@ -129,11 +144,15 @@ export class CartService {
       return {...product, stockQty: product.stockQty + product.quantity};
     });
     this.cartProducts = [];
-    this.msg = hideMsg ? '' : `All items in the cart was successfully removed`;
+    this.msg = hideMsg ? '' : 'All items in the cart was successfully removed';
     this.updateCartData();
   }
 
-  getProductsCount(): number {
+  getProducts(): number {
     return this.cartProducts.length;
+  }
+
+  getProductsArray(): ICartProductModel[] {
+    return this.cartProducts;
   }
 }

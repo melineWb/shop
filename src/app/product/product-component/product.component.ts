@@ -9,14 +9,14 @@ import { IProductModel } from '../models/iproduct-model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent implements OnInit{
-  cartAddedQty:number;
+  cartAddedQty: number;
   @Input() data: IProductModel;
   @Output() addToCart = new EventEmitter<IProductModel>();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.cartAddedQty = 1
+    this.cartAddedQty = 1;
     // cartAddedQty does not part of data from json, this is set from this component 1 (by default) || value from qty field
     this.data.cartAddedQty = this.cartAddedQty;
   }
@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit{
     this.checkValidationQty(this.data.cartAddedQty);
     this.data.stockQty -= this.data.cartAddedQty;
     this.addToCart.emit(this.data);
-    this.cartAddedQty = 1
+    this.cartAddedQty = 1;
     // cartAddedQty does not part of data from json, this is set from this component 1 (by default) || value from qty field
     this.data.cartAddedQty = this.cartAddedQty;
   }

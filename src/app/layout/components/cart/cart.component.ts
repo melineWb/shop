@@ -88,7 +88,7 @@ export class CartComponent implements OnInit {
   }
 
   navigateToShop(): void {
-    this.router.navigateByUrl('product-list');
+    this.router.navigateByUrl('products-list');
   }
 
   navigateToOrder(): void {

@@ -15,26 +15,26 @@ const adminRoutes: Routes = [
     canActivate: [AdminGuard],
     canActivateChild: [AdminGuard],
     children: [
-      { 
-        path: 'products', 
-        component: AdminProductsComponent 
+      {
+        path: 'products',
+        component: AdminProductsComponent
       },
-      { 
-        path: 'product/add', 
-        component: AdminAddProductsComponent 
+      {
+        path: 'product/add',
+        component: AdminAddProductsComponent
       },
-      { 
-        path: 'product/edit/:id', 
-        component: AdminEditProductComponent, 
-        resolve: {data: AdminProductItemResolver} 
+      {
+        path: 'product/edit/:id',
+        component: AdminEditProductComponent,
+        resolve: {product: AdminProductItemResolver}
       },
-      { 
-        path: 'orders', 
-        component: AdminOrdersComponent 
+      {
+        path: 'orders',
+        component: AdminOrdersComponent
       },
-      { 
-        path: '', 
-        component: AdminDashboardComponent 
+      {
+        path: '',
+        component: AdminDashboardComponent
       }
     ]
   },

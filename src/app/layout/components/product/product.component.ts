@@ -19,8 +19,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   cartAddedQty = 1;
 
   constructor(
-    private route: ActivatedRoute, 
-    private productsService: ProductsService, 
+    private route: ActivatedRoute,
+    private productsService: ProductsService,
     private cartService: CartService) { }
 
   ngOnInit(): void {
