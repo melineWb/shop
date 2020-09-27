@@ -7,7 +7,7 @@
             <div class="admin-dashboard__item">
                 <h3 class="text-center">Products</h3>
                 <div class="admin-dashboard__list">
-                    <ng-container *ngFor="let product of products$ | async | slice:0:3">
+                    <ng-container *ngFor="let product of products | slice:0:3">
                         <app-admin-dashboard-item 
                             [data]="product"
                             (editItem)="onEdit($event)">
@@ -24,17 +24,26 @@
         <div class="admin-dashboard__item-wrap">
             <div class="admin-dashboard__item">
                 <h3 class="text-center">Orders</h3>
-                <div class="admin-dashboard__list">
-                    <ng-container *ngFor="let order of orders | slice:0:3">
-                        <app-admin-order-item 
-                            [data]="order">
-                        </app-admin-order-item>
-                    </ng-container>
-                </div>
 
-                <div class="text-center admin-dashboard__buttom">
-                    <button class="admin-dashboard__view-all" routerLink="orders">View all</button>
-                </div>
+                <ng-container *ngIf="orders.length; then ordersList; else ordersEmpty"></ng-container>
+
+                <ng-template #ordersList>
+                    <div class="admin-dashboard__list">
+                        <ng-container *ngFor="let order of orders | slice:0:3">
+                            <app-admin-order-item 
+                                [data]="order">
+                            </app-admin-order-item>
+                        </ng-container>
+                    </div>
+    
+                    <div class="text-center admin-dashboard__buttom">
+                        <button class="admin-dashboard__view-all" routerLink="orders">View all</button>
+                    </div>
+                </ng-template>
+                
+                <ng-template #ordersEmpty>
+                    No created orders
+                </ng-template>
             </div>
         </div>
     </div>

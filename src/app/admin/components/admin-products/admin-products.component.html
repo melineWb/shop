@@ -3,12 +3,12 @@
 
 <div class="d-flex admin-products__wrap admin-products__wrap--top">
     <button class="admin-products__back" (click)="goBack()">< Back</button>
-    <button class="admin-products__back" routerLink="add">Add product</button>
+    <button class="admin-products__back" routerLink="/admin/product/add">Add product</button>
 </div>
 
 <div class="admin-products">
     <div class="admin-products__wrap admin-products__wrap--white">
-        <ng-container *ngFor="let product of products$ | async">
+        <ng-container *ngFor="let product of products">
             <app-admin-dashboard-item 
                 [data]="product"
                 (editItem)="onEdit($event)">

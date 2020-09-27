@@ -7,10 +7,19 @@
 
 <div class="admin-orders">
     <div class="admin-orders__wrap admin-orders__wrap--white">
-        <ng-container *ngFor="let order of orders">
-            <app-admin-dashboard-item 
-                [data]="order">
-            </app-admin-dashboard-item>
-        </ng-container>
+        <ng-container *ngIf="orders.length; then ordersList; else ordersEmpty"></ng-container>
+
+        <ng-template #ordersList>
+            <ng-container *ngFor="let order of orders">
+                <app-admin-order-item 
+                    [data]="order">
+                </app-admin-order-item>
+            </ng-container>
+        </ng-template>
+
+        <ng-template #ordersEmpty>
+            No created orders
+        </ng-template>
     </div>
-</div> 
+</div>
+

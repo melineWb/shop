@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <ng-container *ngFor="let product of products$ | async">
+  <ng-container *ngFor="let product of products">
       <app-product
         [data]="product"
         (addToCart)="addToCart($event)">

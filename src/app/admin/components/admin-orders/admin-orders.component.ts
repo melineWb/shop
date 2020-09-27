@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { OrderService } from '../../../order/services/order.service';
 import { IOrderModel } from '../../../order/models/iorder.model';
@@ -12,14 +12,14 @@ import { IOrderModel } from '../../../order/models/iorder.model';
 export class AdminOrdersComponent implements OnInit {
   orders: IOrderModel[];
 
-  constructor(private location: Location, private orderService: OrderService) { }
+  constructor(private router: Router, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.orders = this.orderService.getOrders();
   }
 
   goBack(): void{
-    this.location.back();
+    this.router.navigateByUrl('/admin');
   }
 
 }

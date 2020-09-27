@@ -8,7 +8,7 @@ import { AdminComponent } from './admin/components/admin.component';
 
 const routes: Routes = [
   {
-    path: 'product-list',
+    path: 'products-list',
     component: HomeComponent,
     pathMatch: 'full'
   },
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'product-list',
+    redirectTo: 'products-list',
     pathMatch: 'full'
   },
   {

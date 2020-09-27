@@ -12,13 +12,13 @@ import { IOrderModel } from '../../../order/models/iorder.model';
   styleUrls: ['./admin-dashboard.component.less']
 })
 export class AdminDashboardComponent implements OnInit {
-  products$: Observable<IProductModel[]>;
+  products: IProductModel[];
   orders: IOrderModel[];
 
   constructor(private productsService: ProductsService, private orderService: OrderService) { }
 
   ngOnInit(): void {
-    this.products$ = this.productsService.getProducts();
+    this.productsService.products$.subscribe(data => this.products = data);
     this.orders = this.orderService.getOrders();
   }
 

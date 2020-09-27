@@ -11,6 +11,7 @@ import { AdminAddProductsComponent } from './components/admin-add-products/admin
 import { AdminProductsFormComponent } from './components/admin-products-form/admin-products-form.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminOrderItemComponent } from './components/admin-order-item/admin-order-item.component';
+import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
 
 const adminComponents = [
   AdminComponent,
@@ -21,6 +22,7 @@ const adminComponents = [
   AdminAddProductsComponent,
   AdminOrdersComponent,
   AdminOrderItemComponent,
+  AdminEditProductComponent,
 ];
 
 @NgModule({

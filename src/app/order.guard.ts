@@ -11,7 +11,7 @@ export class OrderGuard implements CanActivate{
     constructor(private cartService: CartService, private router: Router) { }
 
     private canActiveOrdersRoute(): boolean | UrlTree {
-        return this.cartService.getProductsCount() ? true : this.router.parseUrl('cart');
+        return this.cartService.getProducts() ? true : this.router.parseUrl('cart');
     }
 
     canActivate(): boolean | UrlTree {

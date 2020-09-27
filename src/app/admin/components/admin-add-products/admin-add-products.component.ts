@@ -1,7 +1,8 @@
-import { Component, OnInit, Optional, Inject, Output, EventEmitter } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, Optional, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
+import { ProductsService } from '../../../product//services/products.service';
 import { Category } from '../../../shared/category.enum';
 import { GeneratorService } from '../../../core/services/generator.service';
 import { GeneratorDataService, GeneratorFactory } from '../../../core/services/generator.factory';
@@ -17,10 +18,10 @@ import { GeneratorDataService, GeneratorFactory } from '../../../core/services/g
 })
 export class AdminAddProductsComponent implements OnInit {
   newData: IProductModel;
-  @Output() updateProductsList = new EventEmitter<IProductModel>();
 
   constructor(
-    private location: Location,
+    private router: Router,
+    private productsService: ProductsService,
     @Optional() @Inject(GeneratorDataService) private generatorDataService: string) { }
 
   ngOnInit(): void {
@@ -35,11 +36,10 @@ export class AdminAddProductsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigateByUrl('/admin/products');
   }
 
   onSaveProduct(product: IProductModel): void {
-    this.updateProductsList.emit(product);
+    this.productsService.addProduct(product);
   }
-
 }

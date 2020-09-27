@@ -57,3 +57,18 @@ All notable changes to this project will be documented in this file.
 ### Added
 - OrderByPipe and included it in CartListComponent
 - Changed SharedModule to export CommonModule, FormsModule etc.
+
+### [Task - 5] - 09-27-2020
+### Added 
+- src\app\app-routing.module.ts
+- layout\components\home\home.component.ts for route /products-list
+- layout\components\product\product.component.ts for /product/:productID with ability add products to cart
+- layout\components\cart\cart.component.ts for route /cart with ability change quantity, remove from cart, sorting
+- layout\components\order\order.component.ts for /order with form data
+- layout\components\path-not-found\path-not-found.component.ts
+- admin module with canActivateGuard (only for user with name "admin"). Admin can view orders, products, edit and add products. AdminModule is Lazy loaded.
+
+### Changed
+- CartService & ProductService to support routing & admin's changes
+- Refactor components
+- Save cart data & username to LocalStorage

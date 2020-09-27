@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
 import { ProductsService } from '../../../product/services/products.service';
@@ -15,24 +14,28 @@ import { ICartProductModel } from '../../../cart/models/icart-product-model';
 export class ProductComponent implements OnInit, OnDestroy {
   private sub: any;
   id: string;
-  products$: Observable<IProductModel[]>;
+  products: IProductModel[];
   data: IProductModel;
   cartAddedQty = 1;
 
-  constructor(private route: ActivatedRoute, private productsService: ProductsService, private cartService: CartService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private productsService: ProductsService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
-       this.id = params.id;
+      this.id = params.id;
+      this.data = this.productsService.getProductById(this.id);
+      this.data.cartAddedQty = this.cartAddedQty;
+    });
 
-       this.products$ = this.productsService.getProducts();
-       this.products$.subscribe(products => {
-          products.forEach((item): void => {
-            if (this.id === item.id) {
-              this.data = item;
-              this.data.cartAddedQty = this.cartAddedQty;
-            }
-          });
+    this.productsService.products$.subscribe(data => {
+      data.forEach((item): void => {
+        if (this.id === item.id) {
+          this.data = item;
+          this.data.cartAddedQty = this.cartAddedQty;
+        }
       });
     });
 
@@ -47,9 +50,9 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.checkValidationQty(this.data.cartAddedQty);
     this.data.stockQty -= this.data.cartAddedQty;
     this.addToCart(this.data);
-    this.data.cartAddedQty = 1;
-
-    this.cartAddedQty = 1; // reset Qty in input after added to cart
+    this.cartAddedQty = 1;
+    // cartAddedQty does not part of data from json, this is set from this component 1 (by default) || value from qty field
+    this.data.cartAddedQty = this.cartAddedQty;
   }
 
   changeAddedQty(qty: number): void {
@@ -75,13 +78,19 @@ export class ProductComponent implements OnInit, OnDestroy {
       quantity: data.cartAddedQty,
       stockQty: data.stockQty
     });
+
+    this.productsService.updateProduct(data);
   }
 
   updateProductData(data: ICartProductModel[]): void {
+    const product = {...this.data};
+
     data.forEach((item): void => {
       if (item && this.id === item.id) {
-        this.data.stockQty = item.stockQty;
+        product.stockQty = item.stockQty;
       }
     });
+
+    this.productsService.updateProduct(product);
   }
 }

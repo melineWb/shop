@@ -15,11 +15,46 @@
                 </div>
             </label>
 
+            <div class="app-field__wrapper">
+                <div class="app-field__wrap-horizontall">
+                    <p>Category</p>
+                    <ng-select 
+                        [items]="categoryItems"
+                        class="app-field__select"
+                        bindLabel="id"
+                        bindValue="id"
+                        [searchable]=false
+                        [clearable]=false
+                        [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="category">
+                    </ng-select>
+                </div>
+            </div>
+
             <label class="app-field__wrapper">
                 <div class="app-field__wrap-horizontall">
                     <p>Price</p>
                     <input type="number" id="price" formControlName="price" class="app-field">
                 </div>
+            </label>
+
+            <label class="app-field__wrapper">
+                <div class="app-field__wrap-horizontall">
+                    <p>StockQty</p>
+                    <input type="number" id="stockQty" formControlName="stockQty" class="app-field">
+                </div>
+            </label>
+
+            <label class="app-field__wrapper">
+                <div class="app-field__wrap-horizontall">
+                    <p>Description</p>
+                    <textarea id="description" formControlName="description" class="app-field"></textarea>
+                </div>
+            </label>
+
+            <label class="app-field__wrapper app-field__wrapper--left">
+                <input type="checkbox" id="isAvailabile" formControlName="isAvailabile">
+                Is available
             </label>
         </div>
     </div>
