@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.isLoggedIn();
+    // тут можно и не отписываться, если подписка живет столько, сколько приложение
     this.cartService.data$.subscribe(res => this.updateCartQty(res.msg));
   }
 

@@ -18,6 +18,7 @@ export class CartRowComponent implements OnChanges {
   @Output() increaseItemQty = new EventEmitter<ICartProductModel>();
   @Output() decreaseItemQty = new EventEmitter<ICartProductModel>();
 
+  // может быть изменить стратегию и тогда cd не понадобится?
   constructor(public cd: ChangeDetectorRef) { }
 
   ngOnChanges(): void {

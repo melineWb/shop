@@ -15,6 +15,7 @@ export class AdminProductsComponent implements OnInit {
   constructor(private router: Router, private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    // управление подпиской?
     this.productsService.products$.subscribe(data => this.products = data);
   }
 

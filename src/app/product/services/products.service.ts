@@ -22,6 +22,7 @@ export class ProductsService {
       .subscribe((data: IProductModel[]) => {
         this.products = data;
 
+        // можно так, а можно вернуть поток, который создается методом get
         this.dataProducts.next(data);
       });
   }

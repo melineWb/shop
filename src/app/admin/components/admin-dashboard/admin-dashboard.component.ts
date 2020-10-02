@@ -18,6 +18,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private productsService: ProductsService, private orderService: OrderService) { }
 
   ngOnInit(): void {
+    // управление подпиской?
     this.productsService.products$.subscribe(data => this.products = data);
     this.orders = this.orderService.getOrders();
   }

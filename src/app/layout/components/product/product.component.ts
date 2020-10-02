@@ -30,6 +30,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.data.cartAddedQty = this.cartAddedQty;
     });
 
+    // подписка в подписке является антипатерном. может быть тут подойдет switchMap()
     this.productsService.products$.subscribe(data => {
       data.forEach((item): void => {
         if (this.id === item.id) {
@@ -39,6 +40,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       });
     });
 
+    // а тут подписка уже не сохраняется
     this.cartService.data$.subscribe(res => this.updateProductData(res.removedProducts.length ? res.removedProducts : res.cartProducts));
   }
 
