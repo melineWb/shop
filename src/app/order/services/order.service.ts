@@ -20,6 +20,7 @@ export class OrderService {
     return this.orders;
   }
 
+  // не очень понятно почему этот метод возвращает не объект, а массив, может find использовать?
   getOrderById(id: number): IOrderModel[] {
     return this.orders.map((item: IOrderModel): IOrderModel => {
       if (id === item.id) {
@@ -38,6 +39,9 @@ export class OrderService {
     });
   }
 
+  // этот мето не понятен
+  // если orders это массив, то map возвращает новый массив, но вы его никак не используете
+  // в первоначальном массиве orders ничего не изменится
   updateOrder(data: IOrderModel): void {
     this.orders.map((item: IOrderModel): IOrderModel => {
       if (data.id === item.id) {

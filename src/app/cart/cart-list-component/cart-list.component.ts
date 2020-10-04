@@ -36,6 +36,7 @@ export class CartListComponent implements OnInit {
   constructor(private cartService: CartService, private orderByPipe: OrderByPipe) { }
 
   ngOnInit(): void {
+    // подпиской надо управлять: сохранять, отписываться
     this.cartService.data$.subscribe(res => this.getCartData(res));
   }
 

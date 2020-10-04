@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ICartProductModel } from '../models/icart-product-model';
 import { ICartResultModel } from '../models/icart-result-model';
@@ -17,7 +17,7 @@ export class CartService {
   private dataCartResult: any;
   private msg: string;
   private removedProducts: ICartProductModel[] = [];
-  data$: any;
+  data$: Observable<any>;
 
   constructor(
     private localStorageService: LocalStorageService

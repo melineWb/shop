@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
   constructor( private productsService: ProductsService, private cartService: CartService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    // тут, думаю, надо управлять подписками
     this.productsService.products$.subscribe(data => {
       this.products = data;
       if (this.checkCartProducts()) {
@@ -24,7 +25,7 @@ export class ProductListComponent implements OnInit {
         this.updateProductData(this.cartService.getProductsArray());
       }
     });
-    
+
     this.cartService.data$.subscribe(res => {
       if (this.checkCartProducts()) {
         this.initedCartData = true;
