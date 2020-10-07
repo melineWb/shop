@@ -7,7 +7,9 @@
         ({{data.price | currency:"USD":"symbol"}})
     </div>
 
-    <div class="admin-dashboard-item__edit-wrap">
+    <div class="admin-dashboard-item__edit-wrap" *ngIf="editable">
         <button [routerLink]="['/admin/product/edit', data.id]" class="admin-dashboard-item__edit">Edit</button>
     </div>
+
+    <div *ngIf="showQty">{{data.quantity}}</div>
 </div>

@@ -8,6 +8,7 @@ import { IOrderModel } from '../../../order/models/iorder.model';
 })
 export class AdminOrderItemComponent implements OnInit {
   @Input() data: IOrderModel;
+  @Input() hideLink: boolean;
 
   constructor() { }
 

@@ -14,7 +14,11 @@ export class LocalStorageService {
 
   getItem(key: string): any {
     const value =  this.localStorage.getItem(key);
-    return JSON.parse(value);
+    try {
+      return JSON.parse(value);
+    } catch (e) {
+      return value;
+    }
   }
 
   removeItem(key: string): void {

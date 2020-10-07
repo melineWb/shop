@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgOption } from '@ng-select/ng-select';
 
 import { CartService } from '../services/cart.service';
@@ -12,7 +12,8 @@ import { ICartResultModel } from '../models/icart-result-model';
   styleUrls: ['./cart-list.component.less'],
   providers: [OrderByPipe]
 })
-export class CartListComponent implements OnInit {
+export class CartListComponent implements OnInit, OnDestroy {
+  private sub: any;
   totalPrice = 0;
   isVisiblePopover = false;
   products: ICartProductModel[];
@@ -36,8 +37,7 @@ export class CartListComponent implements OnInit {
   constructor(private cartService: CartService, private orderByPipe: OrderByPipe) { }
 
   ngOnInit(): void {
-    // подпиской надо управлять: сохранять, отписываться
-    this.cartService.data$.subscribe(res => this.getCartData(res));
+    this.sub = this.cartService.data$.subscribe(res => this.getCartData(res));
   }
 
   getCartData(res: ICartResultModel): void {
@@ -80,5 +80,9 @@ export class CartListComponent implements OnInit {
 
   toglePopover(): void {
     this.isVisiblePopover = !this.isVisiblePopover;
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

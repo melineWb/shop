@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from '../services/products.service';
@@ -10,15 +10,16 @@ import { ICartProductModel } from '../../cart/models/icart-product-model';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html'
 })
-export class ProductListComponent implements OnInit {
-  products: IProductModel[];
+export class ProductListComponent implements OnInit, OnDestroy {
   private initedCartData = false;
+  private subProductServ: any;
+  private subCartServ: any;
+  products: IProductModel[];
 
   constructor( private productsService: ProductsService, private cartService: CartService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    // тут, думаю, надо управлять подписками
-    this.productsService.products$.subscribe(data => {
+    this.subProductServ = this.productsService.products$.subscribe(data => {
       this.products = data;
       if (this.checkCartProducts()) {
         this.initedCartData = true;
@@ -26,7 +27,7 @@ export class ProductListComponent implements OnInit {
       }
     });
 
-    this.cartService.data$.subscribe(res => {
+    this.subCartServ = this.cartService.data$.subscribe(res => {
       if (this.checkCartProducts()) {
         this.initedCartData = true;
       }
@@ -63,5 +64,10 @@ export class ProductListComponent implements OnInit {
 
       this.productsService.updateProduct(productObj);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subProductServ.unsubscribe();
+    this.subCartServ.unsubscribe();
   }
 }

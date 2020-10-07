@@ -103,10 +103,7 @@
                     <div *ngFor="let product of products">
                         <app-cart-row 
                             [editable]="false"
-                            [product]="product"
-                            (removeCartItem)="removeCartItem($event)"
-                            (decreaseItemQty)="decreaseItemQty($event)"
-                            (increaseItemQty)="increaseItemQty($event)">
+                            [product]="product">
                         </app-cart-row>
                     </div>
                 </div>

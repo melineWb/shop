@@ -11,6 +11,7 @@
         <ng-container *ngFor="let product of products">
             <app-admin-dashboard-item 
                 [data]="product"
+                [editable]="true"
                 (editItem)="onEdit($event)">
             </app-admin-dashboard-item>
         </ng-container>

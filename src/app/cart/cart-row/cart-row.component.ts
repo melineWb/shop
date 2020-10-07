@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 import { ICartProductModel } from '../models/icart-product-model';
 
@@ -6,7 +6,6 @@ import { ICartProductModel } from '../models/icart-product-model';
   selector: 'app-cart-row',
   templateUrl: './cart-row.component.html',
   styleUrls: ['./cart-row.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartRowComponent implements OnChanges {
   @Input() product: ICartProductModel;
@@ -17,9 +16,6 @@ export class CartRowComponent implements OnChanges {
   @Output() removeCartItem = new EventEmitter<ICartProductModel>();
   @Output() increaseItemQty = new EventEmitter<ICartProductModel>();
   @Output() decreaseItemQty = new EventEmitter<ICartProductModel>();
-
-  // может быть изменить стратегию и тогда cd не понадобится?
-  constructor(public cd: ChangeDetectorRef) { }
 
   ngOnChanges(): void {
     this.setMaxQty();
@@ -32,7 +28,6 @@ export class CartRowComponent implements OnChanges {
   private timeoutMsgDisable(): void {
     setTimeout((): void => {
       this.disableMaxQtyErr = false;
-      this.cd.detectChanges();
     }, 3000);
   }
 

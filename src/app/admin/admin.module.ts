@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { CartModule } from '../cart/cart.module';
 import { AdminComponent } from './components/admin.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminDashboardItemComponent } from './components/admin-dashboard-item/admin-dashboard-item.component';
@@ -12,6 +13,7 @@ import { AdminProductsFormComponent } from './components/admin-products-form/adm
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminOrderItemComponent } from './components/admin-order-item/admin-order-item.component';
 import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
+import { AdminOrderComponent } from './components/admin-order/admin-order.component';
 
 const adminComponents = [
   AdminComponent,
@@ -23,6 +25,7 @@ const adminComponents = [
   AdminOrdersComponent,
   AdminOrderItemComponent,
   AdminEditProductComponent,
+  AdminOrderComponent
 ];
 
 @NgModule({

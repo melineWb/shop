@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
 
@@ -8,13 +8,11 @@ import { IProductModel } from '../../../product/models/iproduct-model';
   styleUrls: ['./admin-dashboard-item.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdminDashboardItemComponent implements OnInit {
+export class AdminDashboardItemComponent {
   @Input() data: IProductModel;
+  @Input() editable: boolean;
+  @Input() showQty: boolean;
   @Output() editItem = new EventEmitter<IProductModel>();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

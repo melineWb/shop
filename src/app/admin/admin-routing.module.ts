@@ -8,6 +8,8 @@ import { AdminAddProductsComponent } from './components/admin-add-products/admin
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminEditProductComponent } from './components/admin-edit-product/admin-edit-product.component';
 import { AdminProductItemResolver } from './admin-product-item.resolver';
+import { AdminOrderComponent } from './components/admin-order/admin-order.component';
+import { AdminOrderItemResolver } from './admin-order-item.resolver';
 
 const adminRoutes: Routes = [
   {
@@ -31,6 +33,11 @@ const adminRoutes: Routes = [
       {
         path: 'orders',
         component: AdminOrdersComponent
+      },
+      {
+        path: 'order/:id',
+        component: AdminOrderComponent,
+        resolve: {order: AdminOrderItemResolver}
       },
       {
         path: '',

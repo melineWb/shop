@@ -1,0 +1,48 @@
+<h1 class="text-center">Order #{{data.id}}</h1>
+<hr class="title-divider"/>
+
+<div class="d-flex admin-order-page__wrap admin-order-page__wrap--top">
+    <button class="admin-order-page__back" (click)="goBack()">< Back</button>
+</div>
+    
+<div class="admin-order-page">
+    <div class="admin-order-page__wrap admin-order-page__wrap--white">
+        <app-admin-order-item 
+            [data]="data"
+            [hideLink]="true">
+        </app-admin-order-item>
+
+        <div class="admin-order-page__table">
+            <div class="admin-order-page__table-content">
+                <div class="text-center">
+                    <h2>Products in order:</h2>
+                </div>
+                
+                <div *ngFor="let product of data.products">
+                    <app-admin-dashboard-item 
+                        [data]="product"
+                        [editable]="false"
+                        [showQty]="true">
+                    </app-admin-dashboard-item>
+                </div>
+            </div>
+    
+            <div class="d-flex admin-order-page__bottom">
+                <div class="admin-order-page__bottom-label">
+                    <span>Total</span>
+                </div>
+                <div class="d-flex admin-order-page__bottom-data">
+                    <div>
+                        <span>Sum: </span>
+                        <span class="admin-order-page__total">{{data.totalPrice | currency:"USD":"symbol"}}</span>
+                    </div>
+
+                    <div>
+                        <span>Quantity: </span>
+                        <span class="admin-order-page__total">{{data.products.length}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

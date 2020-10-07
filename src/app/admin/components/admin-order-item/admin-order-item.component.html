@@ -1,7 +1,14 @@
 <div class="d-flex admin-order-item">
     <div class="admin-order-item__col">
         <div class="admin-order-item__title">
-            <span>Order #{{data.id}}</span>
+            <ng-container *ngIf="hideLink; then hrefTmpl; else btnTempl"></ng-container>
+
+            <ng-template #hrefTmpl>
+                <div><span>Order #{{data.id}}</span></div>
+            </ng-template>
+            <ng-template #btnTempl>
+                <button [routerLink]="['/admin/order', data.id]" class="admin-order-item__title-link">Order #{{data.id}}</button>
+            </ng-template>
             <div><span>{{data.username}}</span></div>
         </div>
 
@@ -12,7 +19,7 @@
 
             <div>
                 <span>Total Sum: </span>
-                <span class="order-page__total">{{data.totalPrice | currency:"USD":"symbol"}}</span>
+                <span>{{data.totalPrice | currency:"USD":"symbol"}}</span>
             </div>
         </div>
     </div>
@@ -22,7 +29,7 @@
         </div>
         <div>
             <span>Payment Type: </span>
-            <span class="order-page__total">{{data.paymentType}}</span>
+            <span>{{data.paymentType}}</span>
         </div>
         <div *ngIf="data.paymentComplete">
             <span class="admin-order-item__green">Payment Complete</span>
@@ -33,13 +40,13 @@
             <span>Address</span>
         </div>
         <div>
-            <span class="order-page__total">{{data.address.country}}</span>
+            <span class="admin-order-item__adress-line">{{data.address.country}}</span>
         </div>
         <div>
-            <span class="order-page__total">{{data.address.city}}</span>
+            <span class="admin-order-item__adress-line">{{data.address.city}}</span>
         </div>
         <div>
-            <span class="order-page__total">{{data.address.street}}, {{data.address.appartments}}</span>
+            <span class="admin-order-item__adress-line">{{data.address.street}}, {{data.address.appartments}}</span>
         </div>
     </div>
 </div>

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ProductsService } from '../../../product/services/products.service';
 import { OrderService } from '../../../order/services/order.service';
@@ -11,36 +10,19 @@ import { IOrderModel } from '../../../order/models/iorder.model';
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.less']
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit, OnDestroy {
+  private sub: any;
   products: IProductModel[];
   orders: IOrderModel[];
 
   constructor(private productsService: ProductsService, private orderService: OrderService) { }
 
   ngOnInit(): void {
-    // управление подпиской?
-    this.productsService.products$.subscribe(data => this.products = data);
+    this.sub = this.productsService.products$.subscribe(data => this.products = data);
     this.orders = this.orderService.getOrders();
   }
 
-  updateProductData(data: IProductModel[]): void {
-    // this.products$.subscribe(products => {
-    //   const cartProducts = products.map((product: IProductModel) => {
-    //     const productObj = {...product};
-
-    //     data.forEach((item): void => {
-    //       if (productObj.id === item.id) {
-    //         productObj.stockQty = item.stockQty;
-    //       }
-    //     });
-    //     return productObj;
-    //   });
-
-    //   this.products$ = new Observable((observer) => {
-    //       observer.next(cartProducts);
-    //       observer.complete();
-    //   });
-    // });
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IProductModel } from '../../../product/models/iproduct-model';
@@ -9,17 +9,21 @@ import { ProductsService } from '../../../product/services/products.service';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.less']
 })
-export class AdminProductsComponent implements OnInit {
+export class AdminProductsComponent implements OnInit, OnDestroy {
+  private sub: any;
   products: IProductModel[];
 
   constructor(private router: Router, private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    // управление подпиской?
-    this.productsService.products$.subscribe(data => this.products = data);
+    this.sub = this.productsService.products$.subscribe(data => this.products = data);
   }
 
   goBack(): void{
     this.router.navigateByUrl('/admin');
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IProductModel } from '../models/iproduct-model';
 
@@ -12,7 +12,7 @@ export class ProductsService {
   private products: IProductModel[] = [];
   private dataJson = '/assets/data.json';
   private dataProducts: any;
-  products$: any;
+  products$: Observable<any>;
 
   constructor(private http: HttpClient) {
     this.dataProducts = new BehaviorSubject(this.products);
